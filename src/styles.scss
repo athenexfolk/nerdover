@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Noto Sans Thai";
+  src: url("./assets/fonts/NotoSansThai.ttf");
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("./assets/fonts/Comfortaa.ttf");
+}
+
+@font-face {
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  src: url("./assets/fonts/MaterialSymbolsRounded.woff2") format("woff2");
+}
+
+body {
+  font-family: "Noto Sans Thai";
+  @apply text-gray-700;
+}
+
+.material-symbols-rounded {
+  font-family: "Material Symbols Rounded";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+.elevated {
+  @apply transition-all hover:shadow-md hover:translate-x-1 hover:-translate-y-1
+}

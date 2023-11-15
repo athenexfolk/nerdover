@@ -1,0 +1,9 @@
+<div class="grid grid-cols-1 gap-y-4">
+  <app-icon-button
+    *ngFor="let nav of navs"
+    [icon]="nav.icon"
+    [label]="nav.label"
+    [routerLink]="nav.link"
+    (click)="sendClose()"
+  />
+</div>

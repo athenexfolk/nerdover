@@ -1,0 +1,17 @@
+<div class="grid grid-cols-1 gap-y-4">
+  <app-icon-button
+    *ngIf="!isLoggedIn"
+    [icon]="'login'"
+    [label]="'เข้าสู่ระบบ'"
+  />
+  <ng-container *ngIf="isLoggedIn">
+    <app-icon-button
+      *ngFor="let nav of adminNavs"
+      [icon]="nav.icon"
+      [label]="nav.label" />
+    <app-icon-button
+      [icon]="'logout'"
+      [label]="'ออกจากระบบ'"
+      (click)="logout()"
+  /></ng-container>
+</div>

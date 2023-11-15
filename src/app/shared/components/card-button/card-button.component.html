@@ -1,0 +1,27 @@
+<div
+  class="w-56 h-36 rounded-xl overflow-hidden flex justify-center items-center text-lg font-semibold text-center relative group border border-gray-100 elevated"
+>
+  <img
+    class="w-full h-full object-cover rounded-xl"
+    [src]="image"
+    [alt]="name + ' cover image'"
+  />
+  <button
+    [routerLink]="['/', 'learn'].concat(link)"
+    class="absolute top-0 left-0 w-full h-full p-2 bg-gradient-to-t from-black/50 to-black/5 text-white flex justify-center items-end lg:invisible lg:opacity-0 transition-all group-hover:visible group-hover:opacity-100"
+  >
+    {{ name }}
+  </button>
+</div>
+
+<!-- <img
+    class="w-full h-full object-cover rounded-xl"
+    [src]="image"
+    [alt]="name + ' cover image'"
+  />
+  <button
+    [routerLink]="['/', 'learn'].concat(link)"
+    class="absolute top-0 left-0 w-full h-full p-2 bg-gradient-to-t from-black/50 to-black/5 text-white flex justify-center items-end lg:invisible lg:opacity-0 transition-all group-hover:visible group-hover:opacity-100"
+  >
+    {{ name }}
+  </button> -->

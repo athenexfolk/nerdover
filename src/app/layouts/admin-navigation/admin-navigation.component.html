@@ -1,14 +1,16 @@
 <div class="grid grid-cols-1 gap-y-4">
   <app-icon-button
-    *ngIf="!isLoggedIn"
+    *ngIf="!(isLoggedIn$ | async)"
     [icon]="'login'"
     [label]="'เข้าสู่ระบบ'"
+    [routerLink]="['/auth/login']"
   />
-  <ng-container *ngIf="isLoggedIn">
+  <ng-container *ngIf="isLoggedIn$ | async">
     <app-icon-button
       *ngFor="let nav of adminNavs"
       [icon]="nav.icon"
-      [label]="nav.label" />
+      [label]="nav.label"
+      [routerLink]="['/admin'].concat(nav.link!)" />
     <app-icon-button
       [icon]="'logout'"
       [label]="'ออกจากระบบ'"

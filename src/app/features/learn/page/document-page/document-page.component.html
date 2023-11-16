@@ -1,0 +1,29 @@
+<div class="bg-white min-h-screen p-4 pb-20">
+  <ng-container *ngIf="book$ | async as book">
+    <div class="mb-4 flex items-center gap-4">
+      <button
+        [routerLink]="['..']"
+        class="p-2 rounded-lg hover:bg-gray-50 flex place-items-center"
+      >
+        <span class="material-symbols-rounded"> arrow_back </span>
+      </button>
+      <h3 class="text-2xl font-semibold">{{ book.name }}</h3>
+    </div>
+    <div class="max-w-screen-md mx-auto">
+      <div class="mb-4">
+        <img
+          [src]="'/upload/' + book.cover"
+          alt="cover image"
+          class="rounded-xl"
+        />
+      </div>
+      <app-document [data]="book.data" />
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #emptyBlock>
+  <div class="text-center">
+    <p>ไม่มีบทความนี้</p>
+  </div>
+</ng-template>

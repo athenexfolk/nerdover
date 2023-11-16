@@ -1,0 +1,20 @@
+<app-backdrop>
+  <div class="bg-white w-72 rounded-lg p-4 shadow-sm">
+    <div class="p-2">
+      <h3 class="text-xl font-semibold">ยืนยันที่จะลบหรือไม่</h3>
+    </div>
+    <div class="p-2">การกระทำนี้จะทำให้ข้อมูลหายไปอย่างถาวร</div>
+    <div class="flex justify-end items-center gap-4">
+      <button (click)="close()"
+        class="flex justify-center items-center px-4 py-2 text-sm font-semibold rounded-md"
+      >
+        ยกเลิก
+      </button>
+      <button (click)="confirmDelete()"
+        class="flex justify-center items-center px-4 py-2 text-sm font-semibold rounded-md bg-red-500 text-white hover:bg-red-700"
+      >
+        ลบ
+      </button>
+    </div>
+  </div>
+</app-backdrop>

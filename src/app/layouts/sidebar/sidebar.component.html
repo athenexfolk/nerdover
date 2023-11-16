@@ -15,7 +15,7 @@
 <button
   (click)="toggleNav()"
   class="md:hidden fixed left-4 bottom-4 p-2 rounded-lg flex justify-center items-center bg-white transition-all"
-  [ngClass]="isNavOpen ? 'shadow-none bg-red-500 text-white' : 'shadow-md'"
+  [ngClass]="isNavOpen ? 'shadow-none text-red-500' : 'shadow-md'"
 >
   <span class="material-symbols-rounded"
     >{{ isNavOpen ? "close" : "menu" }}

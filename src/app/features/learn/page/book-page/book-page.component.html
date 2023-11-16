@@ -1,0 +1,30 @@
+<div class="bg-white min-h-screen p-4">
+  <div class="mb-4 flex items-center gap-4">
+    <button
+      [routerLink]="['..']"
+      class="p-2 rounded-lg hover:bg-gray-50 flex place-items-center"
+    >
+      <span class="material-symbols-rounded"> arrow_back </span>
+    </button>
+    <h3 class="text-2xl font-semibold">{{ (shelf$ | async)?.name }}</h3>
+  </div>
+  <ng-container *ngIf="books$ | async as books">
+    <div
+      *ngIf="books.length; else emptyBlock"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-8 place-content-center place-items-center"
+    >
+      <app-card-button
+        *ngFor="let book of books"
+        [image]="imagePrefix + book.cover!"
+        [link]="['/learn', book.shelfId, book.id]"
+        [name]="book.name"
+      />
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #emptyBlock>
+  <div class="text-center">
+    <p>ไม่มีบทเรียนในหมวดหมู่นี้</p>
+  </div>
+</ng-template>

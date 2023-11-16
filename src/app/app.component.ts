@@ -6,7 +6,11 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SidebarComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    SidebarComponent
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

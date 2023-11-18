@@ -20,7 +20,6 @@ export class ConfirmDeletePanelComponent {
   }
 
   confirmDelete() {
-    this.close();
     this.confirmTrigger.emit();
   }
 }

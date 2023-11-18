@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
+import { Token } from '../../models/token';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,12 @@ export class AuthService {
 
   get isLoggedIn$() {
     return this.loginStatus.asObservable();
+  }
+
+  get token() {
+    const token = localStorage.getItem('nerdovertoken');
+    if (token) return JSON.parse(token) as Token;
+    return null;
   }
 
   constructor(private http: HttpClient) {

@@ -50,8 +50,12 @@ export class ShelfRepositoryService {
     return this.http.post<Book>(`${this.bookEndpoint}`, formData);
   }
 
-  updateShelf(shelfId: string, shelf: Partial<Shelf>) {
-    return this.http.patch<Shelf>(`${this.shelfEndpoint}/${shelfId}`, shelf);
+  updateShelf(shelfId: string, { name }: Partial<Shelf>, cover?: File) {
+    const formData = new FormData();
+    formData.append('id', shelfId);
+    if (name) formData.append('name', name);
+    if (cover) formData.append('cover', cover);
+    return this.http.patch<Shelf>(`${this.shelfEndpoint}/${shelfId}`, formData);
   }
 
   updateBookById(
@@ -65,7 +69,7 @@ export class ShelfRepositoryService {
     if (name) formData.append('name', name);
     if (data) formData.append('data', data);
     if (cover) formData.append('cover', cover);
-    return this.http.patch(
+    return this.http.patch<Book>(
       `${this.bookEndpoint}/${oldShelfId}/${bookId}`,
       formData
     );

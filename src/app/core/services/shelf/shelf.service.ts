@@ -50,8 +50,8 @@ export class ShelfService {
     return this.shelfRepo.createBook(book, cover);
   }
 
-  updateShelf(shelfId: string, shelf: Partial<Shelf>) {
-    return this.shelfRepo.updateShelf(shelfId, shelf);
+  updateShelf(shelfId: string, shelf: Partial<Shelf>, cover?: File) {
+    return this.shelfRepo.updateShelf(shelfId, shelf, cover);
   }
 
   updateBook(

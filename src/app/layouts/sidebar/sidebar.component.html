@@ -1,10 +1,11 @@
 <div
-  class="top-0 md:visible md:opacity-100 fixed md:sticky md:shadow-none w-64 h-screen overflow-auto p-4 flex flex-col gap-6 transition-all duration-300 bg-white"
-  [ngClass]="
+  class="top-0 md:visible md:opacity-100 fixed md:sticky md:shadow-none min-w-0 h-screen flex flex-col gap-6 transition-all duration-300 bg-white"
+  [ngClass]="[
     isNavOpen
       ? 'visible opacity-100 left-0 shadow-lg'
-      : 'invisible opacity-0 -left-64'
-  "
+      : 'invisible opacity-0 -left-64',
+      isNavHidden ? 'w-0 overflow-hidden p-0' : 'w-64 overflow-auto p-4'
+]"
 >
   <app-brand />
   <app-navigation (closeTrigger)="closeNav()" />
@@ -19,5 +20,14 @@
 >
   <span class="material-symbols-rounded"
     >{{ isNavOpen ? "close" : "menu" }}
+  </span>
+</button>
+
+<button
+  (click)="toggleHideNav()"
+  class="hidden fixed left-4 bottom-4 p-2 rounded-lg md:flex justify-center items-center bg-white transition-all shadow-md"
+>
+  <span class="material-symbols-rounded"
+    >chevron_{{ isNavHidden ? "right" : "left" }}
   </span>
 </button>

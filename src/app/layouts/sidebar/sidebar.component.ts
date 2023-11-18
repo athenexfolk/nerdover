@@ -19,11 +19,17 @@ import { AdminNavigationComponent } from '../admin-navigation/admin-navigation.c
 export class SidebarComponent {
   isNavOpen = false;
 
+  isNavHidden = false;
+
   toggleNav() {
     this.isNavOpen = !this.isNavOpen;
   }
 
   closeNav() {
     this.isNavOpen = false;
+  }
+
+  toggleHideNav() {
+    this.isNavHidden = !this.isNavHidden;
   }
 }

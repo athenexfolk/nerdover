@@ -1,0 +1,74 @@
+<app-backdrop>
+  <div class="bg-white w-72 rounded-lg p-4 shadow-sm">
+    <div class="p-2">
+      <h3 class="text-xl font-semibold">เพิ่มหมวดหมู่</h3>
+    </div>
+    <div class="p-2 flex flex-col gap-4 mb-2">
+      <div class="w-56 mx-auto">
+        <input
+          type="text"
+          id="id"
+          placeholder="ID"
+          [(ngModel)]="id"
+          class="px-4 py-2 w-full rounded-lg bg-gray-50 outline-0 focus:bg-gray-100"
+        />
+      </div>
+      <div class="w-56 mx-auto">
+        <input
+          type="text"
+          id="name"
+          placeholder="Name"
+          [(ngModel)]="name"
+          class="px-4 py-2 w-full rounded-lg bg-gray-50 outline-0 focus:bg-gray-100"
+        />
+      </div>
+      <div>
+        <div
+          class="w-56 h-36 rounded-lg mx-auto bg-gray-50 flex justify-center items-center"
+        >
+          <input
+            type="file"
+            accept="image/*"
+            (change)="displayCover($event)"
+            class="hidden"
+            #cover
+          />
+          <button
+            *ngIf="!coverSrc; else coverSelected"
+            (click)="cover.click()"
+            class="w-full h-full flex flex-col gap-2 justify-center items-center p-2"
+          >
+            <span class="material-symbols-rounded"> photo_camera </span>
+            เพิ่มภาพปก
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end items-center gap-4">
+      <button
+        (click)="close()"
+        class="flex justify-center items-center px-4 py-2 text-sm font-semibold rounded-md"
+      >
+        ยกเลิก
+      </button>
+      <button
+        (click)="add()"
+        class="flex justify-center items-center px-4 py-2 text-sm font-semibold rounded-md bg-green-500 text-white hover:bg-green-700"
+      >
+        เพิ่ม
+      </button>
+    </div>
+  </div>
+</app-backdrop>
+
+<ng-template #coverSelected>
+  <div class="relative w-full">
+    <img [src]="coverSrc" class="h-36 object-cover rounded-lg mx-auto" />
+    <button
+      (click)="clearCover()"
+      class="absolute bottom-2 right-2 flex p-2 rounded-full bg-red-500 hover:bg-red-700 shadow text-white justify-center items-center"
+    >
+      <span class="material-symbols-rounded"> delete </span>
+    </button>
+  </div>
+</ng-template>

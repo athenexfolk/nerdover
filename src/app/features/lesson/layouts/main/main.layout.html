@@ -45,21 +45,21 @@
   <nav>
     <ul class="flex flex-col gap-4 text-sm">
       @for (category of contentService.menu()?.categories; track $index) {
-      <li class="flex flex-col gap-2">
-        <h3 class="font-semibold">{{category.name}}</h3>
-        <ul>
-          @for (lesson of category.lessons; track $index) {
-          <li>
-            <a
-              [routerLink]="['/lessons', category.slug, lesson.slug]"
-              (click)="closeMenu()"
-              class="block px-4 py-2"
-              >{{lesson.title}}</a
-            >
-          </li>
-          }
-        </ul>
-      </li>
+        <li class="flex flex-col gap-2">
+          <h3 class="font-semibold">{{ category.name }}</h3>
+          <ul>
+            @for (lesson of category.lessons; track $index) {
+              <li>
+                <a
+                  [routerLink]="['/lessons', category.slug, lesson.slug]"
+                  (click)="closeMenu()"
+                  class="block px-4 py-2"
+                  >{{ lesson.title }}</a
+                >
+              </li>
+            }
+          </ul>
+        </li>
       }
     </ul>
   </nav>

@@ -2,6 +2,8 @@
 @plugin "@tailwindcss/typography";
 @config "../tailwind.config.js";
 
-html {
+html,
+body {
+  font-family: -apple-system, "Noto Sans Thai", system-ui, sans-serif;
   scroll-behavior: smooth;
 }

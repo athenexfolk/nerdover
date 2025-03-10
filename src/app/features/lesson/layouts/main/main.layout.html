@@ -1,0 +1,69 @@
+<button
+  (click)="openMenu()"
+  class="fixed bottom-4 left-4 flex items-center justify-center rounded-lg bg-purple-100/50 p-2 text-purple-500 shadow-md backdrop-blur-xs lg:hidden"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="size-6"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+    />
+  </svg>
+</button>
+
+<div
+  (click)="closeMenu()"
+  [class]="`fixed top-0 left-0 z-10 h-dvh w-full bg-black/50 transition-all duration-500 ${ isOpen ? 'visible opacity-100 backdrop-blur-lg' : 'invisible opacity-0' }`"
+></div>
+
+<aside
+  [class]="`fixed top-0 z-20 flex h-dvh w-64 flex-col gap-4 p-4 bg-white transition-all duration-500 lg:left-0 shadow ${ isOpen ? 'left-0' : '-left-full' }`"
+>
+  <header class="flex items-center gap-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-width="24"
+      viewBox="0 0 240 240"
+      class="size-8"
+    >
+      <path d="M87.78 88.28q63.42.52 63.44 63.44M19.5 220V59 M219.5 20v161" />
+      <circle cx="59.5" cy="60" r="40" />
+      <circle cx="179.5" cy="180" r="40" />
+    </svg>
+    <p class="text-2xl font-bold">เนิร์ดโอเวอร์</p>
+  </header>
+  <nav>
+    <ul class="flex flex-col gap-4 text-sm">
+      @for (category of contentService.menu()?.categories; track $index) {
+      <li class="flex flex-col gap-2">
+        <h3 class="font-semibold">{{category.name}}</h3>
+        <ul>
+          @for (lesson of category.lessons; track $index) {
+          <li>
+            <a
+              [routerLink]="['/lessons', category.slug, lesson.slug]"
+              (click)="closeMenu()"
+              class="block px-4 py-2"
+              >{{lesson.title}}</a
+            >
+          </li>
+          }
+        </ul>
+      </li>
+      }
+    </ul>
+  </nav>
+</aside>
+<main class="transition-all duration-500 lg:pl-64">
+  <router-outlet />
+</main>

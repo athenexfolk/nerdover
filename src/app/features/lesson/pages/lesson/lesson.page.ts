@@ -10,10 +10,11 @@ import {
 } from '@angular/core';
 import { MarkedService } from '../../../../core/services/marked.service';
 import { Lesson } from '../../../../core/models/lesson';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-lesson',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './lesson.page.html',
   styleUrl: './lesson.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

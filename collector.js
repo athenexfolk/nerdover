@@ -9,11 +9,9 @@ async function generateRoutes() {
     );
     const menu = JSON.parse(file);
 
-    const routes = ["/", "/lessons"].concat(
-      menu.categories.flatMap((category) =>
-        category.lessons.map(
-          (lesson) => `/lessons/${category.slug}/${lesson.slug}`,
-        ),
+    const routes = menu.categories.flatMap((category) =>
+      category.lessons.map(
+        (lesson) => `/lessons/${category.slug}/${lesson.slug}`,
       ),
     );
 

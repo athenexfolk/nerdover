@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Marked } from 'marked';
 import renderMathInElement, {
   RenderMathInElementOptions,
 } from 'katex/contrib/auto-render';
 import { highlightAllUnder } from 'prismjs';
+import { isPlatformBrowser } from '@angular/common';
 
 const appMarked = new Marked({
   renderer: {
@@ -37,7 +38,12 @@ function escapeHtml(str: string) {
   providedIn: 'root',
 })
 export class MarkedService {
+  readonly #platform = inject(PLATFORM_ID);
+
   parse(container: HTMLElement, markdown: string) {
+    if (!isPlatformBrowser(this.#platform)) {
+      return;
+    }
     const parsedMarkdown = this.parseMarkdown(markdown);
     container.innerHTML = parsedMarkdown;
     renderMathInElement(container, katexOptions);

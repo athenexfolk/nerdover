@@ -16,6 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": ["katex", "prismjs"],
             "outputPath": "dist/nerdover",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -32,11 +33,14 @@
               "node_modules/prismjs/themes/prism.min.css",
               "node_modules/katex/dist/katex.min.css"
             ],
-            "scripts": [
-              "node_modules/prismjs/prism.js",
-              "node_modules/katex/dist/katex.min.js",
-              "node_modules/katex/dist/contrib/auto-render.min.js"
-            ]
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": {
+              "routesFile": "routes.txt"
+            },
+            "ssr": {
+              "entry": "src/server.ts"
+            }
           },
           "configurations": {
             "production": {

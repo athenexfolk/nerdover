@@ -1,0 +1,8 @@
+/
+/lessons
+/lessons/math/integer
+/lessons/math/fraction-and-decimal
+/lessons/math/power-number
+/lessons/math/linear-equation-in-one-variable
+/lessons/math/ratio-proportion-percent
+/lessons/math/graph-and-linear-relation

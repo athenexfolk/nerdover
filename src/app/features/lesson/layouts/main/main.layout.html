@@ -20,11 +20,11 @@
 
 <div
   (click)="closeMenu()"
-  [class]="`fixed top-0 left-0 z-10 h-dvh w-full bg-black/50 transition-all duration-500 ${ isOpen ? 'visible opacity-100 backdrop-blur-lg' : 'invisible opacity-0' }`"
+  [class]="`fixed top-0 left-0 z-10 h-dvh w-full bg-black/50 transition-all duration-500 ${ isOpen() ? 'visible opacity-100 backdrop-blur-lg' : 'invisible opacity-0' }`"
 ></div>
 
 <aside
-  [class]="`fixed top-0 z-20 flex h-dvh w-64 flex-col gap-4 p-4 bg-white transition-all duration-500 lg:left-0 shadow ${ isOpen ? 'left-0' : '-left-full' }`"
+  [class]="`fixed top-0 z-20 flex h-dvh w-64 flex-col gap-4 p-4 bg-white transition-all duration-500 lg:left-0 shadow ${ isOpen() ? 'left-0' : '-left-full' }`"
 >
   <header class="flex items-center gap-4">
     <svg

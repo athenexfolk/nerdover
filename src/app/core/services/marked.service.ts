@@ -27,15 +27,6 @@ const katexOptions: RenderMathInElementOptions = {
   ],
 };
 
-function escapeHtml(str: string) {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -49,10 +40,21 @@ export class MarkedService {
     const parsedMarkdown = await this.parseMarkdown(markdown);
     container.innerHTML = parsedMarkdown;
     renderMathInElement(container, katexOptions);
-    // highlightAllUnder(container);
   }
 
   parseMarkdown(markdown: string) {
     return appMarked.parse(markdown, { async: true, breaks: true });
+  }
+
+  getToC(container: HTMLElement) {
+    if (!isPlatformBrowser(this.#platform)) {
+      return;
+    }
+    const nodes = container.querySelectorAll('h2');
+    nodes.forEach((node, index) => {
+      node.id = `${index + 1}`;
+    });
+
+    return nodes;
   }
 }

@@ -3,20 +3,22 @@ import { Marked } from 'marked';
 import renderMathInElement, {
   RenderMathInElementOptions,
 } from 'katex/contrib/auto-render';
-import { highlightAllUnder } from 'prismjs';
 import { isPlatformBrowser } from '@angular/common';
+import markedShiki from 'marked-shiki';
+import { codeToHtml } from 'shiki';
 
-const appMarked = new Marked({
-  renderer: {
-    code: ({ text, lang }) => {
-      if (lang === 'mermaid') {
-        return `<div class="mermaid">${text}</div>`;
-      }
-      const escapeText = escapeHtml(text);
-      return `<pre><code class="language-${lang}">${escapeText}</code></pre>`;
+const appMarked = new Marked();
+
+appMarked.use(
+  markedShiki({
+    async highlight(code, lang) {
+      return await codeToHtml(code, {
+        lang,
+        themes: { light: 'github-dark', dark: 'github-dark' },
+      });
     },
-  },
-});
+  }),
+);
 
 const katexOptions: RenderMathInElementOptions = {
   delimiters: [
@@ -40,17 +42,17 @@ function escapeHtml(str: string) {
 export class MarkedService {
   readonly #platform = inject(PLATFORM_ID);
 
-  parse(container: HTMLElement, markdown: string) {
+  async parse(container: HTMLElement, markdown: string) {
     if (!isPlatformBrowser(this.#platform)) {
       return;
     }
-    const parsedMarkdown = this.parseMarkdown(markdown);
+    const parsedMarkdown = await this.parseMarkdown(markdown);
     container.innerHTML = parsedMarkdown;
     renderMathInElement(container, katexOptions);
-    highlightAllUnder(container);
+    // highlightAllUnder(container);
   }
 
   parseMarkdown(markdown: string) {
-    return appMarked.parse(markdown, { async: false, breaks: true });
+    return appMarked.parse(markdown, { async: true, breaks: true });
   }
 }

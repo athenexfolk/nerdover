@@ -30,7 +30,6 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/prismjs/themes/prism.min.css",
               "node_modules/katex/dist/katex.min.css"
             ],
             "scripts": [],

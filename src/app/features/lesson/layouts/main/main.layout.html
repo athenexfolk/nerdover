@@ -52,8 +52,14 @@
               <li>
                 <a
                   [routerLink]="['/lessons', category.slug, lesson.slug]"
+                  [routerLinkActive]="[
+                    'font-semibold',
+                    'border-l-2',
+                    'text-purple-700',
+                    'border-purple-700',
+                  ]"
                   (click)="closeMenu()"
-                  class="block px-4 py-2"
+                  class="block border-l border-gray-200 p-1 pl-4 transition-all hover:border-purple-900 hover:text-purple-900"
                   >{{ lesson.title }}</a
                 >
               </li>

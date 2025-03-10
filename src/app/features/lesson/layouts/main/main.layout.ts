@@ -4,12 +4,12 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ContentService } from '../../../../core/services/content.service';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './main.layout.html',
   styleUrl: './main.layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

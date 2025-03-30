@@ -4,3 +4,6 @@
 /lessons/math/linear-equation-in-one-variable
 /lessons/math/ratio-proportion-percent
 /lessons/math/graph-and-linear-relation
+/lessons/computer-science/c-language
+/lessons/computer-science/pythagorean-theory
+/lessons/computer-science/real-number

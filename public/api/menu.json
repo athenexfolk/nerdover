@@ -46,6 +46,20 @@
           "slug": "graph-and-linear-relation",
           "description": "กราฟและความสัมพันธ์เชิงเส้นเป็นแนวคิดสำคัญในคณิตศาสตร์ที่ใช้แสดงความสัมพันธ์ระหว่างตัวแปรสองตัว โดยสามารถนำเสนอในรูปแบบสมการเชิงเส้น บทเรียนนี้จะพาไปรู้จักกับคู่อันดับ กราฟ ระบบพิกัด และสมการเชิงเส้นสองตัวแปร",
           "cover": "/static/20250224155333_graph-and-linear-relation.webp"
+        },
+        {
+          "id": "02372436-970e-4e6f-8e46-8b11d3b733a6",
+          "title": "ทฤษฎีบทพีทาโกรัส",
+          "slug": "pythagorean-theory",
+          "description": null,
+          "cover": "/static/20250330164415_pythagorean.webp"
+        },
+        {
+          "id": "fe8059a2-c853-457d-8715-2dd68122a431",
+          "title": "จำนวนจริง",
+          "slug": "real-number",
+          "description": null,
+          "cover": "/static/20250330164724_realnumber.webp"
         }
       ]
     },
@@ -53,7 +67,15 @@
       "id": "1edea2b9-6e50-4e78-ab54-4cbeb1e008f4",
       "name": "วิทยาการคอมพิวเตอร์",
       "slug": "computer-science",
-      "lessons": []
+      "lessons": [
+        {
+          "id": "36f8c533-ad4c-4457-9e00-0a3e61bee13c",
+          "title": "ภาษาซี",
+          "slug": "c-language",
+          "description": null,
+          "cover": "/static/20250330164136_clang.webp"
+        }
+      ]
     }
   ]
 }

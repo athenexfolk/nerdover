@@ -74,6 +74,13 @@
           "slug": "c-language",
           "description": null,
           "cover": "/static/20250330164136_clang.webp"
+        },
+        {
+          "id": "fc66d74a-afb5-4ab1-b711-f33a4f0ac9e3",
+          "title": "เซตเบื้องต้น",
+          "slug": "set",
+          "description": null,
+          "cover": "/static/20250411162654_set.webp"
         }
       ]
     }

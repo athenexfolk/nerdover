@@ -21,7 +21,7 @@
     "@angular/platform-server": "^19.2.2",
     "@angular/router": "^19.2.2",
     "@angular/service-worker": "^19.2.2",
-    "@angular/ssr": "^19.2.3",
+    "@angular/ssr": "^19.2.7",
     "express": "^4.21.2",
     "katex": "^0.16.21",
     "marked": "^15.0.7",
@@ -32,8 +32,8 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.3",
-    "@angular/cli": "^19.2.3",
+    "@angular-devkit/build-angular": "^19.2.7",
+    "@angular/cli": "^19.2.7",
     "@angular/compiler-cli": "^19.2.2",
     "@tailwindcss/postcss": "^4.0.14",
     "@tailwindcss/typography": "^0.5.16",

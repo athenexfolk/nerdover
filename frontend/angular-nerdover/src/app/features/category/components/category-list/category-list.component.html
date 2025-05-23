@@ -1,0 +1,24 @@
+<div class="p-4">
+  <div class="mb-4 flex items-center gap-4">
+    <h2 class="text-2xl font-bold">หมวดหมู่</h2>
+    <app-add-item-button
+      (trigger)="addPanel.activate()"
+      class="place-self-center"
+    />
+  </div>
+  <div
+    class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
+  >
+    @for (category of categories; track $index) {
+      <app-category [category]="category" />
+    }
+  </div>
+</div>
+
+@if (addPanel.active) {
+  <app-create-category
+    [creating]="creating"
+    (create)="create($event)"
+    (closed)="addPanel.deactivate()"
+  />
+}

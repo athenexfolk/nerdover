@@ -1,0 +1,47 @@
+<app-overlay>
+  <app-overlay-card title="เพิ่มหมวดหมู่">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="sendRequest()"
+      class="flex flex-col gap-2"
+    >
+      <div class="flex flex-col gap-1">
+        <label for="slug" class="text-sm">หมุดหมวดหมู่</label>
+        <input
+          type="text"
+          id="slug"
+          formControlName="slug"
+          class="w-full rounded border border-stone-300 px-4 py-2"
+        />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="name" class="text-sm">ชื่อหมวดหมู่</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="w-full rounded border border-stone-300 px-4 py-2"
+        />
+      </div>
+      <div class="grid grid-cols-2 place-items-center">
+        <button
+          class="flex w-20 items-center justify-center rounded-full px-4 py-2 font-medium text-green-700 not-disabled:hover:bg-green-50 disabled:text-stone-300"
+          [disabled]="creating() || form.invalid"
+        >
+          @if (creating()) {
+            <div class="loader"></div>
+          } @else {
+            เพิ่ม
+          }
+        </button>
+        <button
+          type="button"
+          (click)="closed.emit()"
+          class="rounded-full px-4 py-2 font-medium hover:bg-stone-50"
+        >
+          ยกเลิก
+        </button>
+      </div>
+    </form>
+  </app-overlay-card>
+</app-overlay>

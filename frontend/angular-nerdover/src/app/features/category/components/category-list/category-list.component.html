@@ -2,7 +2,7 @@
   <div class="mb-4 flex items-center gap-4">
     <h2 class="text-2xl font-bold">หมวดหมู่</h2>
     <app-add-item-button
-      (trigger)="addPanel.activate()"
+      (trigger)="createPanel.activate()"
       class="place-self-center"
     />
   </div>
@@ -10,15 +10,29 @@
     class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
   >
     @for (category of categories; track $index) {
-      <app-category [category]="category" />
+      <app-category
+        [category]="category"
+        (triggerUpdate)="handleOpenUpdatePanel($event)"
+        (triggerDelete)="handleOpenDeletePanel($event)"
+      />
     }
   </div>
 </div>
 
-@if (addPanel.active) {
-  <app-create-category
-    [creating]="creating"
-    (create)="create($event)"
-    (closed)="addPanel.deactivate()"
+@if (createPanel.active) {
+  <app-create-category (closed)="createPanel.deactivate()" />
+}
+
+@if (updatePanel.active && focusCategory) {
+  <app-update-category
+    [category]="focusCategory"
+    (closed)="updatePanel.deactivate()"
+  />
+}
+
+@if (deletePanel.active && focusCategory) {
+  <app-delete-category
+    [category]="focusCategory"
+    (closed)="deletePanel.deactivate()"
   />
 }

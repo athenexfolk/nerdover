@@ -5,12 +5,18 @@ import { Toggler } from '../../../../shared/utils/toggler';
 import { CreateCategoryComponent } from '../create-category/create-category.component';
 import { CategoryComponent } from '../category/category.component';
 import { AddItemButtonComponent } from '../../../../shared/components/add-item-button/add-item-button.component';
-import type { CreateCategoryDto } from '../../../../core/dtos/create-category';
-import { delay, finalize } from 'rxjs';
+import { UpdateCategoryComponent } from '../update-category/update-category.component';
+import { DeleteCategoryComponent } from '../delete-category/delete-category.component';
 
 @Component({
   selector: 'app-category-list',
-  imports: [CreateCategoryComponent, CategoryComponent, AddItemButtonComponent],
+  imports: [
+    CreateCategoryComponent,
+    CategoryComponent,
+    AddItemButtonComponent,
+    UpdateCategoryComponent,
+    DeleteCategoryComponent,
+  ],
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.css',
 })
@@ -19,11 +25,11 @@ export class CategoryListComponent {
 
   categories: Category[] = [];
 
-  addPanel = new Toggler();
+  createPanel = new Toggler();
   updatePanel = new Toggler();
   deletePanel = new Toggler();
 
-  creating = false;
+  focusCategory?: Category;
 
   ngOnInit() {
     this.apiService.getCategories().subscribe({
@@ -33,20 +39,23 @@ export class CategoryListComponent {
     });
   }
 
-  create(dto: CreateCategoryDto) {
-    this.creating = true;
-    this.apiService
-      .createCategory(dto)
-      .pipe(
-        delay(300),
-        finalize(() => {
-          this.creating = false;
-        }),
-      )
-      .subscribe({
-        next: () => {
-          this.addPanel.deactivate();
-        },
-      });
+  handleOpenUpdatePanel(category: Category) {
+    this.focusCategory = category;
+    this.updatePanel.activate();
+  }
+
+  handleOpenDeletePanel(category: Category) {
+    this.focusCategory = category;
+    this.deletePanel.activate();
+  }
+
+  handleCloseUpdatePanel() {
+    this.updatePanel.deactivate();
+    this.focusCategory = undefined;
+  }
+
+  handleCloseDeletePanel() {
+    this.deletePanel.deactivate();
+    this.focusCategory = undefined;
   }
 }

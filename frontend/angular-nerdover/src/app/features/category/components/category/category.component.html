@@ -4,7 +4,7 @@
     <span class="text-xs">{{ category().slug }}</span>
   </div>
   <div class="flex items-center gap-2">
-    <app-edit-item-button />
-    <app-delete-item-button />
+    <app-edit-item-button (trigger)="triggerUpdate.emit(category())" />
+    <app-delete-item-button (trigger)="triggerDelete.emit(category())" />
   </div>
 </app-item-card>

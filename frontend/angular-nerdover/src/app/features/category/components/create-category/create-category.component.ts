@@ -1,8 +1,10 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { OverlayComponent } from '../../../../shared/components/overlay/overlay.component';
 import { OverlayCardComponent } from '../../../../shared/components/overlay-card/overlay-card.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import type { CreateCategoryDto } from '../../../../core/dtos/create-category';
+import { ApiService } from '../../../../core/services/api.service';
+import { delay, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-create-category',
@@ -11,6 +13,7 @@ import type { CreateCategoryDto } from '../../../../core/dtos/create-category';
   styleUrl: './create-category.component.css',
 })
 export class CreateCategoryComponent {
+  private readonly apiService = inject(ApiService);
   private readonly fb = inject(FormBuilder);
 
   form = this.fb.group({
@@ -18,10 +21,11 @@ export class CreateCategoryComponent {
     name: ['', Validators.required],
   });
 
-  creating = input(false);
-
-  create = output<CreateCategoryDto>();
+  created = output();
   closed = output();
+
+  creating = false;
+  createErrorMessage?: string;
 
   get slug() {
     return this.form.get('slug');
@@ -31,11 +35,39 @@ export class CreateCategoryComponent {
     return this.form.get('name');
   }
 
-  sendRequest() {
+  create() {
     if (this.form.invalid) {
+      this.createErrorMessage = 'กรุณากรอกข้อมูลให้ครบถ้วน';
       return;
     }
 
-    this.create.emit({ name: this.name!.value!, slug: this.slug!.value! });
+    let dto: CreateCategoryDto = {
+      name: this.name!.value!,
+      slug: this.slug!.value!,
+    };
+
+    this.creating = true;
+    this.apiService
+      .createCategory(dto)
+      .pipe(
+        delay(300),
+        finalize(() => {
+          this.creating = false;
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.created.emit();
+          this.form.reset();
+          this.createErrorMessage = undefined;
+          this.closed.emit();
+        },
+        error: (err) => {
+          if (err.status === 409) {
+            this.createErrorMessage =
+              'หมุดหมวดหมู่นี้มีอยู่แล้ว กรุณาเลือกชื่ออื่น';
+          }
+        },
+      });
   }
 }

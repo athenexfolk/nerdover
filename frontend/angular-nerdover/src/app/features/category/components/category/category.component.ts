@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Category } from '../../../../core/models/category';
 import { ItemCardComponent } from '../../../../shared/components/item-card/item-card.component';
 import { EditItemButtonComponent } from '../../../../shared/components/edit-item-button/edit-item-button.component';
@@ -16,4 +16,7 @@ import { DeleteItemButtonComponent } from '../../../../shared/components/delete-
 })
 export class CategoryComponent {
   category = input.required<Category>();
+
+  triggerUpdate = output<Category>();
+  triggerDelete = output<Category>();
 }

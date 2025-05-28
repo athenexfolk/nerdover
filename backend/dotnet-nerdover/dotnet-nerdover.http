@@ -1,0 +1,6 @@
+@dotnet_nerdover_HostAddress = http://localhost:5159
+
+GET {{dotnet_nerdover_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import type { Lesson } from '../../../../core/models/lesson';
 import { ItemCardComponent } from '../../../../shared/components/item-card/item-card.component';
 import { ContentItemButtonComponent } from '../../../../shared/components/content-item-button/content-item-button.component';
@@ -18,4 +18,7 @@ import { DeleteItemButtonComponent } from '../../../../shared/components/delete-
 })
 export class LessonComponent {
   lesson = input.required<Lesson>();
+
+  triggerUpdate = output<Lesson>();
+  triggerDelete = output<Lesson>();
 }

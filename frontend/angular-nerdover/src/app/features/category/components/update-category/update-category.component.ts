@@ -52,8 +52,6 @@ export class UpdateCategoryComponent {
     };
 
     this.updating = true;
-    console.log(this.category().id);
-    
     this.apiService
       .updateCategory(this.category().id, dto)
       .pipe(

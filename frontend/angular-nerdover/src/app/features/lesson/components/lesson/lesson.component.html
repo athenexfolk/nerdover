@@ -4,8 +4,8 @@
     <span class="text-xs">{{ lesson().slug }}</span>
   </div>
   <div class="flex items-end gap-2">
-    <app-edit-item-button />
+    <app-edit-item-button (trigger)="triggerUpdate.emit(lesson())" />
     <app-content-item-button />
-    <app-delete-item-button />
+    <app-delete-item-button (trigger)="triggerDelete.emit(lesson())" />
   </div>
 </app-item-card>

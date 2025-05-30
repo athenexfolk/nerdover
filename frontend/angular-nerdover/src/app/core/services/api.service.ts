@@ -5,6 +5,7 @@ import type { Lesson } from '../models/lesson';
 import type { CreateLessonDto } from '../dtos/create-lesson';
 import type { CreateCategoryDto } from '../dtos/create-category';
 import type { UpdateCategoryDto } from '../dtos/update-category';
+import type { UpdateLessonDto } from '../dtos/update-lesson';
 
 @Injectable({
   providedIn: 'root',
@@ -45,8 +46,8 @@ export class ApiService {
     return this.http.post(`${this.BASE_API_URL}/api/lessons`, dto);
   }
 
-  updateLesson(id: string) {
-    return this.http.put(`${this.BASE_API_URL}/api/lessons/${id}`, {});
+  updateLesson(id: string, dto: UpdateLessonDto) {
+    return this.http.put(`${this.BASE_API_URL}/api/lessons/${id}`, dto);
   }
 
   updateContent(id: string) {

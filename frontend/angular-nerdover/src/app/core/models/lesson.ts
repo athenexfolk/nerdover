@@ -4,6 +4,6 @@ export interface Lesson {
   title: string;
   categorySlug: string;
   contentUrl: string;
-  cover?: string;
+  coverUrl?: string;
   content?: string;
 }

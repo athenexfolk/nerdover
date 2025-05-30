@@ -1,5 +1,5 @@
 <div class="p-4">
-  <div class="flex items-center gap-4 mb-4">
+  <div class="mb-4 flex items-center gap-4">
     <h2 class="text-2xl font-bold">บทเรียน</h2>
     <app-add-item-button
       (trigger)="addPanel.activate()"
@@ -11,7 +11,11 @@
     class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
   >
     @for (lesson of lessons; track $index) {
-      <app-lesson [lesson]="lesson" />
+      <app-lesson
+        [lesson]="lesson"
+        (triggerUpdate)="handleOpenUpdatePanel($event)"
+        (triggerDelete)="handleOpenDeletePanel($event)"
+      />
     }
   </div>
 </div>
@@ -20,5 +24,20 @@
   <app-create-lesson
     (created)="addPanel.deactivate()"
     (closed)="addPanel.deactivate()"
+  />
+}
+
+@if (updatePanel.active && focusLesson) {
+  <app-update-lesson
+    [lesson]="focusLesson"
+    (updated)="handleCloseUpdatePanel()"
+    (closed)="handleCloseDeletePanel()"
+  />
+}
+
+@if (deletePanel.active && focusLesson) {
+  <app-delete-lesson
+    [lesson]="focusLesson"
+    (closed)="deletePanel.deactivate()"
   />
 }

@@ -1,1 +1,23 @@
-<p>delete-lesson works!</p>
+<app-overlay>
+  <app-overlay-card title="ลบบทเรียน">
+    <div class="grid grid-cols-2 place-items-center">
+      <button
+        (click)="delete()"
+        class="flex w-20 items-center justify-center rounded-full px-4 py-2 font-medium text-red-700 not-disabled:hover:bg-red-50 disabled:text-stone-300"
+        [disabled]="deleting"
+      >
+        @if (deleting) {
+          <div class="loader"></div>
+        } @else {
+          ลบ
+        }
+      </button>
+      <button
+        (click)="closed.emit()"
+        class="rounded-full px-4 py-2 font-medium hover:bg-stone-50"
+      >
+        ยกเลิก
+      </button>
+    </div>
+  </app-overlay-card>
+</app-overlay>

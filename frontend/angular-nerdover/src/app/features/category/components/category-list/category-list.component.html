@@ -26,13 +26,13 @@
 @if (updatePanel.active && focusCategory) {
   <app-update-category
     [category]="focusCategory"
-    (closed)="updatePanel.deactivate()"
+    (closed)="handleCloseUpdatePanel()"
   />
 }
 
 @if (deletePanel.active && focusCategory) {
   <app-delete-category
     [category]="focusCategory"
-    (closed)="deletePanel.deactivate()"
+    (closed)="handleCloseDeletePanel()"
   />
 }

@@ -3,8 +3,9 @@ import { ApiService } from '../../../../core/services/api.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import type { CreateLessonDto } from '../../../../core/dtos/create-lesson';
 import type { Category } from '../../../../core/models/category';
-import { OverlayComponent } from "../../../../shared/components/overlay/overlay.component";
-import { OverlayCardComponent } from "../../../../shared/components/overlay-card/overlay-card.component";
+import { OverlayComponent } from '../../../../shared/components/overlay/overlay.component';
+import { OverlayCardComponent } from '../../../../shared/components/overlay-card/overlay-card.component';
+import { delay, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-create-lesson',
@@ -24,8 +25,11 @@ export class CreateLessonComponent {
     categorySlug: ['', [Validators.required]],
   });
 
-  closed = output();
   created = output();
+  closed = output();
+
+  creating = false;
+  createErrorMessage?: string;
 
   selectedCoverUrl?: string;
 
@@ -55,6 +59,7 @@ export class CreateLessonComponent {
 
   create() {
     if (this.form.invalid) {
+      this.createErrorMessage = 'กรุณากรอกข้อมูลให้ครบถ้วน';
       return;
     }
 
@@ -62,20 +67,38 @@ export class CreateLessonComponent {
     let title = this.title!.value!;
     let categorySlug = this.categorySlug!.value!;
 
-    let createLessonDto: CreateLessonDto = {
+    let dto: CreateLessonDto = {
       slug,
       title,
       categorySlug,
     };
 
     if (this.selectedCoverUrl) {
-      createLessonDto.coverUrl = this.selectedCoverUrl;
+      dto.coverUrl = this.selectedCoverUrl;
     }
 
-    this.apiService.createLesson(createLessonDto).subscribe({
-      next: () => {
-        this.created.emit();
-      },
-    });
+    this.creating = true;
+    this.apiService
+      .createLesson(dto)
+      .pipe(
+        delay(300),
+        finalize(() => {
+          this.creating = false;
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.created.emit();
+          this.form.reset();
+          this.createErrorMessage = undefined;
+          this.closed.emit();
+        },
+        error: (err) => {
+          if (err.status === 409) {
+            this.createErrorMessage =
+              'หมุดบทเรียนนี้มีอยู่แล้ว กรุณาเลือกชื่ออื่น';
+          }
+        },
+      });
   }
 }

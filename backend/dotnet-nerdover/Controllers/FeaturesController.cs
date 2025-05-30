@@ -50,7 +50,7 @@ public class FeaturesController(FirestoreDb db, StorageClient storage) : Control
 
         await _storage.UploadObjectAsync("nerdoverbucket", filename, image.ContentType, memoryStream, uploadObjectOptions);
 
-        return Ok($"https://storage.googleapis.com/nerdoverbucket/{filename}");
+        return Ok(new { Url = $"https://storage.googleapis.com/nerdoverbucket/{filename}" });
     }
 
     [HttpGet("export")]

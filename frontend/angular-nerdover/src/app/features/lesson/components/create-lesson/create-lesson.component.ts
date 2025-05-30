@@ -101,4 +101,30 @@ export class CreateLessonComponent {
         },
       });
   }
+
+  clearCoverImage() {
+    this.selectedCoverUrl = undefined;
+  }
+
+  uploadImage(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.apiService
+        .uploadImage(file)
+        .pipe(
+          finalize(() => {
+            input.value = '';
+          }),
+        )
+        .subscribe({
+          next: (url) => {
+            this.selectedCoverUrl = url.url;
+          },
+          error: (err) => {
+            console.error('Image upload failed', err);
+          },
+        });
+    }
+  }
 }

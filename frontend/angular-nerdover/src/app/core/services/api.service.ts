@@ -64,7 +64,12 @@ export class ApiService {
     return this.http.get(`${this.BASE_API_URL}/api/features/images`);
   }
 
-  uploadImage() {
-    return this.http.post(`${this.BASE_API_URL}/api/features/images`, {});
+  uploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+    return this.http.post<{ url: string }>(
+      `${this.BASE_API_URL}/api/features/images`,
+      formData,
+    );
   }
 }

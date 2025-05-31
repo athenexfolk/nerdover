@@ -50,11 +50,10 @@ export class ApiService {
     return this.http.put(`${this.BASE_API_URL}/api/lessons/${id}`, dto);
   }
 
-  updateContent(id: string) {
-    return this.http.patch(
-      `${this.BASE_API_URL}/api/categories/${id}/content`,
-      {},
-    );
+  updateContent(id: string, content: string) {
+    return this.http.put(`${this.BASE_API_URL}/api/lessons/${id}/content`, {
+      content,
+    });
   }
 
   deleteLesson(id: string) {
@@ -62,7 +61,7 @@ export class ApiService {
   }
 
   getImageLinks() {
-    return this.http.get(`${this.BASE_API_URL}/api/features/images`);
+    return this.http.get<string[]>(`${this.BASE_API_URL}/api/features/images`);
   }
 
   uploadImage(file: File) {

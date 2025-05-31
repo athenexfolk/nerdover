@@ -6,7 +6,8 @@ import { CreateLessonComponent } from '../create-lesson/create-lesson.component'
 import { LessonComponent } from '../lesson/lesson.component';
 import { AddItemButtonComponent } from '../../../../shared/components/add-item-button/add-item-button.component';
 import { UpdateLessonComponent } from '../update-lesson/update-lesson.component';
-import { DeleteLessonComponent } from "../delete-lesson/delete-lesson.component";
+import { DeleteLessonComponent } from '../delete-lesson/delete-lesson.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lesson-list',
@@ -15,13 +16,14 @@ import { DeleteLessonComponent } from "../delete-lesson/delete-lesson.component"
     LessonComponent,
     AddItemButtonComponent,
     UpdateLessonComponent,
-    DeleteLessonComponent
-],
+    DeleteLessonComponent,
+  ],
   templateUrl: './lesson-list.component.html',
   styleUrl: './lesson-list.component.css',
 })
 export class LessonListComponent {
   private readonly apiService = inject(ApiService);
+  private readonly router = inject(Router);
 
   lessons: Lesson[] = [];
 
@@ -57,5 +59,9 @@ export class LessonListComponent {
   handleCloseDeletePanel() {
     this.deletePanel.deactivate();
     this.focusLesson = undefined;
+  }
+
+  openContentPage(lesson: Lesson) {
+    this.router.navigate(['contents', lesson.id]);
   }
 }

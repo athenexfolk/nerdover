@@ -20,5 +20,6 @@ export class LessonComponent {
   lesson = input.required<Lesson>();
 
   triggerUpdate = output<Lesson>();
+  triggerContent = output<Lesson>();
   triggerDelete = output<Lesson>();
 }

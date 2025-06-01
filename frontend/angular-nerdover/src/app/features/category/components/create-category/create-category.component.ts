@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import type { CreateCategoryDto } from '../../../../core/dtos/create-category';
 import { ApiService } from '../../../../core/services/api.service';
 import { delay, finalize } from 'rxjs';
+import { CategoryStoreService } from '../../../../core/services/category-store.service';
 
 @Component({
   selector: 'app-create-category',
@@ -13,6 +14,7 @@ import { delay, finalize } from 'rxjs';
   styleUrl: './create-category.component.css',
 })
 export class CreateCategoryComponent {
+  private readonly categoryStore = inject(CategoryStoreService);
   private readonly apiService = inject(ApiService);
   private readonly fb = inject(FormBuilder);
 
@@ -56,10 +58,11 @@ export class CreateCategoryComponent {
         }),
       )
       .subscribe({
-        next: () => {
+        next: (category) => {
           this.created.emit();
           this.form.reset();
           this.createErrorMessage = undefined;
+          this.categoryStore.add(category);
           this.closed.emit();
         },
         error: (err) => {

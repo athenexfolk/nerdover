@@ -75,7 +75,7 @@
             />
           </svg>
         </button>
-        @for (url of imageUrls; track $index) {
+        @for (url of imageStore.images(); track $index) {
           <img
             [src]="url"
             (click)="copyUrl(url)"

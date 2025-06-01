@@ -59,7 +59,7 @@ public class CategoriesController(FirestoreDb db) : ControllerBase
         return CreatedAtAction(nameof(GetCategoryById), new { id = docRef.Id }, newCategory);
     }
 
-    [HttpPatch("{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCategory(string id, UpdateCategoryDto dto)
     {
 
@@ -80,7 +80,10 @@ public class CategoriesController(FirestoreDb db) : ControllerBase
 
         await docRef.UpdateAsync(updatedField);
 
-        return NoContent();
+        var updatedSnapshot = await docRef.GetSnapshotAsync();
+        var updatedCategory = updatedSnapshot.ToDictionary();
+
+        return Ok(updatedCategory);
     }
 
     [HttpDelete("{id}")]

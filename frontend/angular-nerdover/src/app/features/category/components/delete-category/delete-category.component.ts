@@ -4,6 +4,7 @@ import { OverlayCardComponent } from '../../../../shared/components/overlay-card
 import { ApiService } from '../../../../core/services/api.service';
 import { Category } from '../../../../core/models/category';
 import { delay, finalize } from 'rxjs';
+import { CategoryStoreService } from '../../../../core/services/category-store.service';
 
 @Component({
   selector: 'app-delete-category',
@@ -12,6 +13,7 @@ import { delay, finalize } from 'rxjs';
   styleUrl: './delete-category.component.css',
 })
 export class DeleteCategoryComponent {
+  private readonly categoryStore = inject(CategoryStoreService);
   private readonly apiService = inject(ApiService);
 
   category = input.required<Category>();
@@ -36,6 +38,7 @@ export class DeleteCategoryComponent {
         next: () => {
           this.deleted.emit();
           this.deleteErrorMessage = undefined;
+          this.categoryStore.remove(this.category());
           this.closed.emit();
         },
         error: () => {

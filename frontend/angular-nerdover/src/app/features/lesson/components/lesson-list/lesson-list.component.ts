@@ -8,6 +8,7 @@ import { AddItemButtonComponent } from '../../../../shared/components/add-item-b
 import { UpdateLessonComponent } from '../update-lesson/update-lesson.component';
 import { DeleteLessonComponent } from '../delete-lesson/delete-lesson.component';
 import { Router } from '@angular/router';
+import { LessonStoreService } from '../../../../core/services/lesson-store.service';
 
 @Component({
   selector: 'app-lesson-list',
@@ -22,10 +23,8 @@ import { Router } from '@angular/router';
   styleUrl: './lesson-list.component.css',
 })
 export class LessonListComponent {
-  private readonly apiService = inject(ApiService);
+  protected readonly lessonStore = inject(LessonStoreService);
   private readonly router = inject(Router);
-
-  lessons: Lesson[] = [];
 
   addPanel = new Toggler();
   updatePanel = new Toggler();
@@ -34,11 +33,7 @@ export class LessonListComponent {
   focusLesson?: Lesson;
 
   ngOnInit() {
-    this.apiService.getLessons().subscribe({
-      next: (lessons) => {
-        this.lessons = lessons;
-      },
-    });
+    this.lessonStore.load();
   }
 
   handleOpenUpdatePanel(lesson: Lesson) {

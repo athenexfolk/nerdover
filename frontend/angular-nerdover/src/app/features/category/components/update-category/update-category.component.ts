@@ -6,6 +6,7 @@ import { delay, finalize } from 'rxjs';
 import { ApiService } from '../../../../core/services/api.service';
 import { Category } from '../../../../core/models/category';
 import type { UpdateCategoryDto } from '../../../../core/dtos/update-category';
+import { CategoryStoreService } from '../../../../core/services/category-store.service';
 
 @Component({
   selector: 'app-update-category',
@@ -14,6 +15,7 @@ import type { UpdateCategoryDto } from '../../../../core/dtos/update-category';
   styleUrl: './update-category.component.css',
 })
 export class UpdateCategoryComponent {
+  private readonly categoryStore = inject(CategoryStoreService);
   private readonly apiService = inject(ApiService);
   private readonly fb = inject(FormBuilder);
 
@@ -61,10 +63,11 @@ export class UpdateCategoryComponent {
         }),
       )
       .subscribe({
-        next: () => {
+        next: (category) => {
           this.updated.emit();
           this.form.reset();
           this.updateErrorMessage = undefined;
+          this.categoryStore.update(category);
           this.closed.emit();
         },
         error: () => {

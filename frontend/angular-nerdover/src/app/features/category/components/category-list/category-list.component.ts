@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ApiService } from '../../../../core/services/api.service';
 import type { Category } from '../../../../core/models/category';
 import { Toggler } from '../../../../shared/utils/toggler';
 import { CreateCategoryComponent } from '../create-category/create-category.component';
@@ -7,6 +6,7 @@ import { CategoryComponent } from '../category/category.component';
 import { AddItemButtonComponent } from '../../../../shared/components/add-item-button/add-item-button.component';
 import { UpdateCategoryComponent } from '../update-category/update-category.component';
 import { DeleteCategoryComponent } from '../delete-category/delete-category.component';
+import { CategoryStoreService } from '../../../../core/services/category-store.service';
 
 @Component({
   selector: 'app-category-list',
@@ -21,9 +21,7 @@ import { DeleteCategoryComponent } from '../delete-category/delete-category.comp
   styleUrl: './category-list.component.css',
 })
 export class CategoryListComponent {
-  private readonly apiService = inject(ApiService);
-
-  categories: Category[] = [];
+  protected readonly categoryStore = inject(CategoryStoreService);
 
   createPanel = new Toggler();
   updatePanel = new Toggler();
@@ -32,11 +30,7 @@ export class CategoryListComponent {
   focusCategory?: Category;
 
   ngOnInit() {
-    this.apiService.getCategories().subscribe({
-      next: (categories) => {
-        this.categories = categories;
-      },
-    });
+    this.categoryStore.load();
   }
 
   handleOpenUpdatePanel(category: Category) {

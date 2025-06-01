@@ -130,7 +130,10 @@ public class LessonsController(FirestoreDb db, StorageClient storage) : Controll
 
         await docRef.UpdateAsync(updatedField);
 
-        return NoContent();
+        var updatedSnapshot = await docRef.GetSnapshotAsync();
+        var updateLesson = updatedSnapshot.ToDictionary();
+
+        return Ok(updateLesson);
     }
 
     [HttpPut("{id}/content")]

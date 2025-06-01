@@ -6,6 +6,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import type { Lesson } from '../../../../core/models/lesson';
 import type { UpdateLessonDto } from '../../../../core/dtos/update-lesson';
 import { delay, finalize } from 'rxjs';
+import { LessonStoreService } from '../../../../core/services/lesson-store.service';
 
 @Component({
   selector: 'app-update-lesson',
@@ -14,6 +15,7 @@ import { delay, finalize } from 'rxjs';
   styleUrl: './update-lesson.component.css',
 })
 export class UpdateLessonComponent {
+  private readonly lessonStore = inject(LessonStoreService);
   private readonly apiService = inject(ApiService);
   private readonly fb = inject(FormBuilder);
 
@@ -42,7 +44,7 @@ export class UpdateLessonComponent {
       title: this.lesson().title,
     });
 
-    this.selectedCoverUrl = this.lesson().coverUrl;    
+    this.selectedCoverUrl = this.lesson().coverUrl;
   }
 
   update() {
@@ -71,10 +73,11 @@ export class UpdateLessonComponent {
         }),
       )
       .subscribe({
-        next: () => {
+        next: (lesson) => {
           this.updated.emit();
           this.form.reset();
           this.updateErrorMessage = undefined;
+          this.lessonStore.update(lesson);
           this.closed.emit();
         },
         error: () => {

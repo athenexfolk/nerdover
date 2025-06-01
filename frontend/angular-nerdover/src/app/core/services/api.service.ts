@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   updateCategory(id: string, dto: UpdateCategoryDto) {
-    return this.http.patch(`${this.BASE_API_URL}/api/categories/${id}`, dto);
+    return this.http.put<Category>(`${this.BASE_API_URL}/api/categories/${id}`, dto);
   }
 
   deleteCategory(id: string) {
@@ -43,11 +43,11 @@ export class ApiService {
   }
 
   createLesson(dto: CreateLessonDto) {
-    return this.http.post(`${this.BASE_API_URL}/api/lessons`, dto);
+    return this.http.post<Lesson>(`${this.BASE_API_URL}/api/lessons`, dto);
   }
 
   updateLesson(id: string, dto: UpdateLessonDto) {
-    return this.http.put(`${this.BASE_API_URL}/api/lessons/${id}`, dto);
+    return this.http.put<Lesson>(`${this.BASE_API_URL}/api/lessons/${id}`, dto);
   }
 
   updateContent(id: string, content: string) {

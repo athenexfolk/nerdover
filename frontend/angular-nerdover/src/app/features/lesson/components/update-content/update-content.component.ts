@@ -16,6 +16,7 @@ import { OverlayComponent } from '../../../../shared/components/overlay/overlay.
 import { OverlayCardComponent } from '../../../../shared/components/overlay-card/overlay-card.component';
 import { Toggler } from '../../../../shared/utils/toggler';
 import { finalize } from 'rxjs';
+import { ImageStoreService } from '../../../../core/services/image-store.service';
 
 @Component({
   selector: 'app-update-content',
@@ -24,6 +25,7 @@ import { finalize } from 'rxjs';
   styleUrl: './update-content.component.css',
 })
 export class UpdateContentComponent {
+  protected readonly imageStore = inject(ImageStoreService);
   private readonly apiService = inject(ApiService);
   private readonly markedService = inject(MarkedService);
 
@@ -43,8 +45,6 @@ export class UpdateContentComponent {
 
   saving = false;
   saveErrorMessage?: string;
-
-  imageUrls: string[] = [];
 
   constructor() {
     effect(() => {
@@ -72,9 +72,7 @@ export class UpdateContentComponent {
       },
     });
 
-    this.apiService.getImageLinks().subscribe({
-      next: (urls) => (this.imageUrls = urls),
-    });
+    this.imageStore.load();
   }
 
   save() {
@@ -106,7 +104,7 @@ export class UpdateContentComponent {
         )
         .subscribe({
           next: (url) => {
-            this.imageUrls.push(url.url);
+            this.imageStore.add(url.url);
           },
           error: (err) => {
             console.error('Image upload failed', err);

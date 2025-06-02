@@ -27,7 +27,10 @@ export class ApiService {
   }
 
   updateCategory(id: string, dto: UpdateCategoryDto) {
-    return this.http.put<Category>(`${this.BASE_API_URL}/api/categories/${id}`, dto);
+    return this.http.put<Category>(
+      `${this.BASE_API_URL}/api/categories/${id}`,
+      dto,
+    );
   }
 
   deleteCategory(id: string) {
@@ -71,5 +74,11 @@ export class ApiService {
       `${this.BASE_API_URL}/api/features/images`,
       formData,
     );
+  }
+
+  exportContent() {
+    return this.http.get(`${this.BASE_API_URL}/api/features/export`, {
+      responseType: 'blob',
+    });
   }
 }

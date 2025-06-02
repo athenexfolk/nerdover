@@ -1,0 +1,46 @@
+<div class="flex">
+  <div class="flex flex-col gap-4 p-4 grow">
+    <div class="relative h-64 overflow-hidden rounded-xl">
+      <div class="absolute top-0 left-0 h-full w-full">
+        @if (lesson()?.coverUrl) {
+          <img
+            [src]="lesson()!.coverUrl"
+            [alt]="lesson()!.title"
+            class="h-full w-full object-cover object-center"
+          />
+        }
+      </div>
+      <div
+        class="absolute top-0 left-0 grid h-full w-full items-end bg-gradient-to-b from-black/0 to-black/50 p-6"
+      >
+        <h1 class="text-3xl font-black text-white drop-shadow">
+          {{ lesson()?.title }}
+        </h1>
+      </div>
+    </div>
+    <!-- <div class="flex flex-col gap-1">
+      <p>{{ lesson()?.description }}</p>
+      <p class="text-end text-xs">{{ lesson()?.author }}</p>
+      <p class="text-end text-xs">{{ lesson()?.updateTime | date }}</p>
+    </div> -->
+    <div
+      #md
+      class="prose prose-sm md:prose-base prose-stone prose-blockquote:not-italic prose-blockquote:bg-stone-100 prose-blockquote:py-2 prose-blockquote:px-4 prose-img:max-w-lg prose-img:w-full prose-figure:max-w-lg prose-figure:w-full prose-figure:mx-auto prose-img:mx-auto max-w-screen-2xl pb-20"
+    ></div>
+  </div>
+  <div class="sticky top-0 h-dvh w-64 shrink-0 p-4 max-lg:hidden">
+    <h4 class="mb-2 text-xl font-bold">สารบัญ</h4>
+    <ul class="flex flex-col gap-2 text-sm">
+      @for (node of toc(); track $index) {
+        <li>
+          <button
+            class="flex cursor-pointer text-start hover:underline"
+            (click)="scrollToElement(node.id)"
+          >
+            {{ node.textContent }}
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

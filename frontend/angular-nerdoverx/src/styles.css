@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@config "../tailwind.config.js";
+
+html,
+body {
+  font-family: -apple-system, "Noto Sans Thai", system-ui, sans-serif;
+  scroll-behavior: smooth;
+}
+
+.active {
+  font-weight: 600;
+  border-left-style: var(--tw-border-style);
+  border-left-width: 2px;
+  color: var(--color-purple-700);
+  border-color: var(--color-purple-700);
+}

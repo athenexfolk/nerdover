@@ -29,7 +29,10 @@
               "node_modules/katex/dist/katex.min.css"
             ],
             "server": "src/main.server.ts",
-            "outputMode": "server",
+            "prerender": {
+              "discoverRoutes": true,
+              "routesFile": "routes.txt"
+            },
             "ssr": {
               "entry": "src/server.ts"
             }

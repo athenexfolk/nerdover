@@ -56,6 +56,11 @@ public class FeaturesController(FirestoreDb db, StorageClient storage) : Control
     [HttpGet("export")]
     public async Task<IActionResult> ExportLessons()
     {
+        var options = new JsonSerializerOptions
+        {
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        };
+
         // 1. Start stream
         var ms = new MemoryStream();
         // 2. Start zip operation
@@ -86,7 +91,7 @@ public class FeaturesController(FirestoreDb db, StorageClient storage) : Control
                             : []
             }).ToList();
             {
-                var jsonMenu = JsonSerializer.Serialize(menu);
+                var jsonMenu = JsonSerializer.Serialize(menu, options);
                 var zipEntry = zipArchive.CreateEntry($"api/menu.json", CompressionLevel.Optimal);
                 using var entryStream = zipEntry.Open();
                 using var sw = new StreamWriter(entryStream);
@@ -114,7 +119,7 @@ public class FeaturesController(FirestoreDb db, StorageClient storage) : Control
                     lesson["content"] = $"Error fetching content: {ex.Message}";
                 }
 
-                var jsonContent = JsonSerializer.Serialize(lesson);
+                var jsonContent = JsonSerializer.Serialize(lesson, options);
 
                 var zipEntry = zipArchive.CreateEntry($"api/{lesson["categorySlug"]}.{lesson["slug"]}.json", CompressionLevel.Optimal);
                 using var entryStream = zipEntry.Open();

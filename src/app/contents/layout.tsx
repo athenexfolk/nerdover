@@ -1,4 +1,4 @@
-import { contentMenu } from '@/utils/content-menu';
+import { contentMenu } from '@/menus/menu';
 import Link from 'next/link';
 
 export default function ContentLayout({
@@ -8,40 +8,34 @@ export default function ContentLayout({
 }>) {
     return (
         <>
-            <aside className="fixed top-0 left-0 flex h-dvh w-64 flex-col gap-8 p-4">
-                <div>เนิร์ดโอเวอร์</div>
+            <aside className="fixed top-0 left-0 flex h-dvh w-72 flex-col gap-8 overflow-auto p-4">
+                <span className="text-2xl font-bold">เนิร์ดโอเวอร์</span>
                 <nav>
-                    <ul className="flex flex-col gap-4">
-                        {contentMenu.map((category) => (
-                            <li key={category.slug}>
-                                <div className="mb-2 flex items-center gap-2">
-                                    <div className="grow border-t"></div>
-                                    <p className="shrink-0 text-xs">
-                                        {category.title}
-                                    </p>
-                                    <div className="grow border-t"></div>
-                                </div>
-                                <ul className="flex flex-col text-sm">
-                                    {category.lessons?.map((item) => (
-                                        <li
-                                            key={item.slug}
-                                            className="flex flex-col"
+                    {contentMenu.map((category) => (
+                        <div key={category.slug}>
+                            <div className="sticky -top-4 -mx-4 bg-white px-4 py-2 text-sm">
+                                <p className="font-medium">{category.title}</p>
+                            </div>
+                            <ul className="flex flex-col text-sm">
+                                {category.lessons?.map((item) => (
+                                    <li
+                                        key={item.slug}
+                                        className="flex flex-col"
+                                    >
+                                        <Link
+                                            href={`/contents/${category.slug}/${item.slug}`}
+                                            className="rounded px-4 py-2 font-medium hover:bg-stone-800 hover:text-white"
                                         >
-                                            <Link
-                                                href={`/contents/${category.slug}/${item.slug}`}
-                                                className="rounded px-4 py-2 hover:bg-stone-50"
-                                            >
-                                                {item.title}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
-                        ))}
-                    </ul>
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </nav>
             </aside>
-            <main className="p-4 pl-64">{children}</main>
+            <main className="pl-72">{children}</main>
         </>
     );
 }

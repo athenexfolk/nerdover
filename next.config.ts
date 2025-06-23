@@ -22,7 +22,11 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
     options: {
-        remarkPlugins: [remarkGfm, remarkMath, remarkToc],
+        remarkPlugins: [
+            remarkGfm,
+            remarkMath,
+            [remarkToc, { heading: 'สารบัญ' }],
+        ],
         rehypePlugins: [
             rehypeKatex,
             [rehypePrettyCode, { theme: 'github-light' }],

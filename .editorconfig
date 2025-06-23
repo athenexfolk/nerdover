@@ -1,0 +1,78 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Default settings for all files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# JavaScript, TypeScript, JSX, TSX files
+[*.{js,jsx,ts,tsx}]
+indent_style = space
+indent_size = 4
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 4
+
+# CSS, SCSS, PostCSS files
+[*.{css,scss,pcss}]
+indent_style = space
+indent_size = 4
+
+# MDX files
+[*.mdx]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
+
+# Markdown files
+[*.md]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 4
+
+# HTML files
+[*.html]
+indent_style = space
+indent_size = 4
+
+# Package.json and other package files
+[package.json]
+indent_style = space
+indent_size = 4
+
+# Config files
+[*.{config.js,config.ts,config.mjs}]
+indent_style = space
+indent_size = 4
+
+# Tailwind config
+[tailwind.config.{js,ts}]
+indent_style = space
+indent_size = 4
+
+# Next.js config
+[next.config.{js,ts,mjs}]
+indent_style = space
+indent_size = 4
+
+# PostCSS config
+[postcss.config.{js,mjs}]
+indent_style = space
+indent_size = 4
+
+# Lock files (don't modify these)
+[{package-lock.json,pnpm-lock.yaml,yarn.lock}]
+insert_final_newline = false
+trim_trailing_whitespace = false

@@ -1,8 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @config "../../tailwind.config.js";
 
 html,
 body {
-  font-family: var(--font-noto-sans-thai), sans-serif;
+    font-family: var(--font-noto-sans-thai), sans-serif;
+    scroll-behavior: smooth;
 }

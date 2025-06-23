@@ -3,11 +3,7 @@ import Content from './fraction-and-decimal.mdx';
 
 export default async function Page() {
     return (
-        <ContentWrapper
-            title="เศษส่วนและทศนิยม"
-            coverUrl="https://storage.googleapis.com/nerdoverbucket/media/25680602120507_fraction.webp"
-            coverAlt="Fraction and Decimal"
-        >
+        <ContentWrapper title="เศษส่วนและทศนิยม">
             <Content />
         </ContentWrapper>
     );

@@ -1,7 +1,6 @@
+import type { Anchor } from './anchor';
 import type { Lesson } from './lesson';
 
-export interface Category {
-    title: string;
-    slug: string;
+export interface Category extends Anchor {
     lessons: Lesson[];
 }

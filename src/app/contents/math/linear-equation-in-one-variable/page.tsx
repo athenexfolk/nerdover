@@ -10,6 +10,10 @@ export default async function Page() {
                 title: 'อัตราส่วน สัดส่วน และร้อยละ',
                 slug: 'math/ratio-proportion-percent',
             }}
+            nextLesson={{
+                title: 'กราฟและความสัมพันธ์เชิงเส้น',
+                slug: 'math/graph-and-linear-relation',
+            }}
         >
             <Content />
         </ContentWrapper>

@@ -23,6 +23,10 @@ export const mathCategory: Category = {
         {
             title: 'สมการเชิงเส้นตัวแปรเดียว',
             slug: 'linear-equation-in-one-variable',
-        }
+        },
+        {
+            title: 'กราฟและความสัมพันธ์เชิงเส้น',
+            slug: 'graph-and-linear-relation',
+        },
     ],
 };

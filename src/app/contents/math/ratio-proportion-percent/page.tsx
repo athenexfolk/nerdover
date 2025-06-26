@@ -10,6 +10,10 @@ export default async function Page() {
                 title: 'เลขยกกำลัง',
                 slug: 'math/power-number',
             }}
+            nextLesson={{
+                title: 'สมการเชิงเส้นตัวแปรเดียว',
+                slug: 'math/linear-equation-in-one-variable',
+            }}
         >
             <Content />
         </ContentWrapper>

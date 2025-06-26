@@ -20,5 +20,9 @@ export const mathCategory: Category = {
             title: 'อัตราส่วน สัดส่วน และร้อยละ',
             slug: 'ratio-proportion-percent',
         },
+        {
+            title: 'สมการเชิงเส้นตัวแปรเดียว',
+            slug: 'linear-equation-in-one-variable',
+        }
     ],
 };

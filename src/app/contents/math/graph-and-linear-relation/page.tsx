@@ -10,6 +10,10 @@ export default async function Page() {
                 title: 'สมการเชิงเส้นตัวแปรเดียว',
                 slug: 'math/linear-equation-in-one-variable',
             }}
+            nextLesson={{
+                title: 'จำนวนจริง',
+                slug: 'math/real-number',
+            }}
         >
             <Content />
         </ContentWrapper>

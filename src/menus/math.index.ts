@@ -28,5 +28,9 @@ export const mathCategory: Category = {
             title: 'กราฟและความสัมพันธ์เชิงเส้น',
             slug: 'graph-and-linear-relation',
         },
+        {
+            title: 'จำนวนจริง',
+            slug: 'real-number',
+        },
     ],
 };

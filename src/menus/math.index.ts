@@ -16,5 +16,9 @@ export const mathCategory: Category = {
             title: 'เลขยกกำลัง',
             slug: 'power-number',
         },
+        {
+            title: 'อัตราส่วน สัดส่วน และร้อยละ',
+            slug: 'ratio-proportion-percent',
+        },
     ],
 };

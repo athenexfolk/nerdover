@@ -8,11 +8,11 @@ type RelatedLessonProps = {
 
 export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
     return (
-        <div className="flex flex-wrap justify-between gap-4 max-sm:flex-col">
+        <div className="flex flex-wrap justify-between gap-4 px-8 py-4 max-sm:flex-col">
             <div>
                 {prev && (
                     <Link
-                        href={`contents/${prev.slug}`}
+                        href={`/contents/${prev.slug}`}
                         className="flex items-center gap-2 rounded border border-stone-200 px-4 py-2 font-medium"
                     >
                         <LeftArrowIcon />
@@ -24,7 +24,7 @@ export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
             <div>
                 {next && (
                     <Link
-                        href={`contents/${next.slug}`}
+                        href={`/contents/${next.slug}`}
                         className="flex items-center gap-2 rounded border border-stone-200 px-4 py-2 font-medium"
                     >
                         {next.title}

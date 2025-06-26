@@ -5,10 +5,14 @@ export default async function Page() {
     return (
         <ContentWrapper
             title="เศษส่วนและทศนิยม"
-            imageUrl="https://storage.googleapis.com/nerdoverbucket/media/25680602120507_fraction.webp"
+            imageUrl="/images/fraction-and-decimal.webp"
+            prevLesson={{
+                title: 'จำนวนเต็ม',
+                slug: 'math/integer',
+            }}
             nextLesson={{
-                title: 'เศษส่วนและทศนิยม',
-                slug: 'math/fraction-and-decimal',
+                title: 'เลขยกกำลัง',
+                slug: 'math/power-number',
             }}
         >
             <Content />

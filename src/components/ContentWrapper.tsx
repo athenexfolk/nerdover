@@ -21,13 +21,14 @@ export default function ContentWrapper({
                 className="relative flex h-96 items-center justify-center border-y-4 bg-cover bg-fixed bg-center"
                 style={{ backgroundImage: `url('${imageUrl}')` }}
             >
-                {/* <div className="absolute inset-0"></div> */}
-                <h1 className="relative z-10 w-full border-y-4 bg-white p-8 text-center text-4xl font-black">
+                <h1 className="relative z-10 w-full border-y-4 bg-white p-8 text-center text-4xl font-black shadow-xl">
                     {title}
                 </h1>
             </div>
-            <RelatedLesson prev={prevLesson} next={nextLesson} />
-            <article className="prose prose-sm sm:prose-base md:prose-lg prose-blockquote:not-italic prose-blockquote:py-2 prose-blockquote:px-4 prose-img:max-w-2xl prose-img:w-full prose-figure:max-w-2xl prose-figure:w-full prose-figure:mx-auto prose-img:mx-auto mx-auto max-w-screen p-4 pb-20 md:p-8">
+            {(prevLesson || nextLesson) && (
+                <RelatedLesson prev={prevLesson} next={nextLesson} />
+            )}
+            <article className="prose prose-sm prose-stone sm:prose-base md:prose-lg prose-blockquote:not-italic prose-blockquote:py-2 prose-blockquote:px-4 prose-img:max-w-2xl prose-img:w-full prose-figure:max-w-2xl prose-figure:w-full prose-figure:mx-auto prose-img:mx-auto mx-auto max-w-screen p-4 pb-20 md:px-8">
                 {children}
             </article>
         </div>

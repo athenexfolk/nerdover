@@ -12,5 +12,9 @@ export const mathCategory: Category = {
             title: 'เศษส่วนและทศนิยม',
             slug: 'fraction-and-decimal',
         },
+        {
+            title: 'เลขยกกำลัง',
+            slug: 'power-number',
+        },
     ],
 };

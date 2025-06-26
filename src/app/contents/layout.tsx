@@ -51,7 +51,6 @@ export default function ContentLayout({
                     ))}
                 </nav>
             </aside>
-            {/* Close button positioned outside the scrollable sidebar */}
             <button
                 onClick={closeMenu}
                 className={`fixed top-1/2 z-30 flex h-12 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-stone-300 bg-white text-stone-300 transition-all duration-500 max-lg:hidden ${isMenuOpen ? 'visible left-68 opacity-100' : 'invisible -left-4 opacity-0'}`}

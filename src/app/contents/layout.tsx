@@ -2,14 +2,16 @@
 
 import { contentMenu } from '@/menus/menu';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function ContentLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(
+        (typeof window !== 'undefined' && window.innerWidth >= 1024) || false,
+    );
 
     const openMenu = () => setIsMenuOpen(true);
     const closeMenu = () => setIsMenuOpen(false);
@@ -32,7 +34,22 @@ export default function ContentLayout({
             <aside
                 className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto border-stone-300 bg-stone-50 p-4 transition-all duration-500 lg:border-e ${isMenuOpen ? 'left-0 max-lg:shadow-2xl' : '-left-72'}`}
             >
-                <span className="text-2xl font-bold">เนิร์ดโอเวอร์</span>
+                <div className="flex items-center gap-4">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeWidth="24"
+                        viewBox="0 0 240 240"
+                        className="size-8"
+                    >
+                        <path d="M87.78 88.28q63.42.52 63.44 63.44M19.5 220V59 M219.5 20v161" />
+                        <circle cx="59.5" cy="60" r="40" />
+                        <circle cx="179.5" cy="180" r="40" />
+                    </svg>
+                    <p className="text-2xl font-bold">เนิร์ดโอเวอร์</p>
+                </div>
                 <nav className="text-sm">
                     {contentMenu.map((category) => (
                         <div key={category.slug} className="mb-8">

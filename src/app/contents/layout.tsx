@@ -14,6 +14,13 @@ export default function ContentLayout({
     const openMenu = () => setIsMenuOpen(true);
     const closeMenu = () => setIsMenuOpen(false);
 
+    // Helper to close menu only on small devices
+    const closeMenuOnSmallDevice = () => {
+        if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+            closeMenu();
+        }
+    };
+
     return (
         <>
             {isMenuOpen && (
@@ -23,16 +30,44 @@ export default function ContentLayout({
                 ></div>
             )}
             <aside
-                className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto border-stone-300 bg-white p-4 transition-all duration-500 lg:border-e ${isMenuOpen ? 'left-0 max-lg:shadow-2xl' : '-left-72'}`}
+                className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto border-stone-300 bg-stone-50 p-4 transition-all duration-500 lg:border-e ${isMenuOpen ? 'left-0 max-lg:shadow-2xl' : '-left-72'}`}
             >
                 <span className="text-2xl font-bold">เนิร์ดโอเวอร์</span>
-                <nav>
+                <nav className="text-sm">
                     {contentMenu.map((category) => (
-                        <div key={category.slug}>
-                            <div className="sticky -top-4 -mx-4 bg-white px-4 py-2 text-sm">
-                                <p className="font-medium">{category.title}</p>
-                            </div>
-                            <ul className="flex flex-col text-sm">
+                        <div key={category.slug} className="mb-8">
+                            <p className="mb-2 font-medium">{category.title}</p>
+                            <ul className="flex flex-col">
+                                {category.subcategories?.map((subcategory) => (
+                                    <li
+                                        key={subcategory.slug}
+                                        className="flex flex-col"
+                                    >
+                                        <p className="mb-2 font-medium">
+                                            {subcategory.title}
+                                        </p>
+                                        <ul className="flex flex-col">
+                                            {subcategory.lessons?.map(
+                                                (item) => (
+                                                    <li
+                                                        key={item.slug}
+                                                        className="flex flex-col"
+                                                    >
+                                                        <Link
+                                                            href={`/contents/${category.slug}/${subcategory.slug}/${item.slug}`}
+                                                            onClick={
+                                                                closeMenuOnSmallDevice
+                                                            }
+                                                            className="border-l border-stone-300 px-4 py-2 font-medium text-stone-500 hover:border-stone-500 hover:text-stone-700"
+                                                        >
+                                                            {item.title}
+                                                        </Link>
+                                                    </li>
+                                                ),
+                                            )}
+                                        </ul>
+                                    </li>
+                                ))}
                                 {category.lessons?.map((item) => (
                                     <li
                                         key={item.slug}
@@ -40,7 +75,8 @@ export default function ContentLayout({
                                     >
                                         <Link
                                             href={`/contents/${category.slug}/${item.slug}`}
-                                            className="rounded px-4 py-2 font-medium hover:bg-stone-800 hover:text-white"
+                                            onClick={closeMenuOnSmallDevice}
+                                            className="border-l border-stone-300 px-4 py-2 font-medium text-stone-500 hover:border-stone-500 hover:text-stone-700"
                                         >
                                             {item.title}
                                         </Link>
@@ -53,7 +89,7 @@ export default function ContentLayout({
             </aside>
             <button
                 onClick={closeMenu}
-                className={`fixed top-1/2 z-30 flex h-12 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-stone-300 bg-white text-stone-300 transition-all duration-500 max-lg:hidden ${isMenuOpen ? 'visible left-68 opacity-100' : 'invisible -left-4 opacity-0'}`}
+                className={`fixed top-1/2 z-30 flex h-12 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-stone-300 bg-stone-50 text-stone-300 transition-all duration-500 max-lg:hidden ${isMenuOpen ? 'visible left-68 opacity-100' : 'invisible -left-4 opacity-0'}`}
             >
                 <LeftChevronIcon />
             </button>
@@ -64,7 +100,7 @@ export default function ContentLayout({
             </main>
             <button
                 onClick={openMenu}
-                className="fixed bottom-4 left-4 z-20 flex size-10 items-center justify-center rounded-full bg-white shadow"
+                className="fixed bottom-4 left-4 z-20 flex size-10 items-center justify-center rounded-full bg-stone-50 shadow"
             >
                 <MenuIcon />
             </button>

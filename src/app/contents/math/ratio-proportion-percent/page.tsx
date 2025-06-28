@@ -5,7 +5,7 @@ export default async function Page() {
     return (
         <ContentWrapper
             title="อัตราส่วน สัดส่วน และร้อยละ"
-            imageUrl="/images/percent.webp"
+            imageUrl="/images/ratio-proportion-percent.webp"
             prevLesson={{
                 title: 'เลขยกกำลัง',
                 slug: 'math/power-number',

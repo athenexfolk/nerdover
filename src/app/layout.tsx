@@ -20,7 +20,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${notoSansThai.variable}`}>{children}</body>
+            <body
+                className={`${notoSansThai.variable} bg-stone-50 text-stone-700`}
+            >
+                {children}
+            </body>
         </html>
     );
 }

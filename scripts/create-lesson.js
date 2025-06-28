@@ -1,23 +1,24 @@
 #!/usr/bin/env node
-// Usage: node scripts/create-lesson.js <categorySlug> <lessonSlug>
+// Usage: node scripts/create-lesson.js <categoryPath> <lessonSlug>
 
 const fs = require('fs');
 const path = require('path');
 
 function usage() {
     console.log(
-        'Usage: node scripts/create-lesson.js <categorySlug> <lessonSlug>',
+        'Usage: node scripts/create-lesson.js <categoryPath> <lessonSlug>',
     );
     process.exit(1);
 }
 
-const [, , categorySlug, lessonSlug] = process.argv;
-if (!categorySlug || !lessonSlug) usage();
+const [, , categoryPath, lessonSlug] = process.argv;
+if (!categoryPath || !lessonSlug) usage();
 
+// Support nested categories by splitting categoryPath by '/'
 const baseDir = path.join(
     __dirname,
     '../src/app/contents',
-    categorySlug,
+    ...categoryPath.split('/'),
     lessonSlug,
 );
 if (!fs.existsSync(baseDir)) {

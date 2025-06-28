@@ -32,5 +32,9 @@ export const mathCategory: Category = {
             title: 'จำนวนจริง',
             slug: 'real-number',
         },
+        {
+            title: 'เซตเบื้องต้น',
+            slug: 'set',
+        },
     ],
 };

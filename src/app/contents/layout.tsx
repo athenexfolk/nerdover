@@ -2,23 +2,21 @@
 
 import { contentMenu } from '@/menus/menu';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export default function ContentLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(
-        (typeof window !== 'undefined' && window.innerWidth >= 1024) || false,
-    );
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const openMenu = () => setIsMenuOpen(true);
     const closeMenu = () => setIsMenuOpen(false);
 
     // Helper to close menu only on small devices
     const closeMenuOnSmallDevice = () => {
-        if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+        if (window.innerWidth < 1024) {
             closeMenu();
         }
     };

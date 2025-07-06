@@ -9,8 +9,8 @@ const notoSansThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-    title: 'Nerdover',
-    description: 'Educational content for nerds',
+    title: 'เนิร์ดโอเวอร์',
+    description: 'อยากจะเรียน เรียนให้เนิร์ด เนิร์ดให้โอเวอร์',
 };
 
 export default function RootLayout({

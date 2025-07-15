@@ -33,6 +33,10 @@ export const mathCategory: Category = {
             slug: 'real-number',
         },
         {
+            title: 'ทฤษฎีบทพีทาโกรัส',
+            slug: 'pythagorean-theorem',
+        },
+        {
             title: 'เซตเบื้องต้น',
             slug: 'set',
         },

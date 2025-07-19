@@ -1,36 +1,22 @@
-import type { NextConfig } from 'next';
 import createMDX from '@next/mdx';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import remarkToc from 'remark-toc';
-import rehypeKatex from 'rehype-katex';
-import rehypeSlug from 'rehype-slug';
-import rehypePrettyCode from 'rehype-pretty-code';
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+    turbopack: {},
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'storage.googleapis.com',
-                pathname: '/nerdoverbucket/**',
-            },
-        ],
-    },
 };
 
 const withMDX = createMDX({
     options: {
         remarkPlugins: [
-            remarkGfm,
-            remarkMath,
-            [remarkToc, { heading: 'สารบัญ' }],
+            ['remark-gfm'] as any,
+            ['remark-math'] as any,
+            ['remark-toc', { heading: 'สารบัญ' }] as any,
         ],
         rehypePlugins: [
-            rehypeKatex,
-            [rehypePrettyCode, { theme: 'github-light' }],
-            rehypeSlug,
+            ['rehype-katex'] as any,
+            ['rehype-pretty-code', { theme: 'github-light' }] as any,
+            ['rehype-slug'] as any,
         ],
     },
 });

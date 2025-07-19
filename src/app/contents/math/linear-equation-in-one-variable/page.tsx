@@ -1,19 +1,18 @@
 import ContentWrapper from '@/components/ContentWrapper';
 import Content from './linear-equation-in-one-variable.mdx';
+import { getLessonNavByPathFromRoot } from '@/core/utils/anchor-utils';
 
 export default async function Page() {
+    const { prevLesson, nextLesson } = getLessonNavByPathFromRoot(
+        'math',
+        'linear-equation-in-one-variable',
+    );
     return (
         <ContentWrapper
             title="สมการเชิงเส้นตัวแปรเดียว"
             imageUrl="/images/linear-equation-in-one-variable.webp"
-            prevLesson={{
-                title: 'อัตราส่วน สัดส่วน และร้อยละ',
-                slug: 'math/ratio-proportion-percent',
-            }}
-            nextLesson={{
-                title: 'กราฟและความสัมพันธ์เชิงเส้น',
-                slug: 'math/graph-and-linear-relation',
-            }}
+            prevLesson={prevLesson}
+            nextLesson={nextLesson}
         >
             <Content />
         </ContentWrapper>

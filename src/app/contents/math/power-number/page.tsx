@@ -1,19 +1,18 @@
 import ContentWrapper from '@/components/ContentWrapper';
 import Content from './power-number.mdx';
+import { getLessonNavByPathFromRoot } from '@/core/utils/anchor-utils';
 
 export default async function Page() {
+    const { prevLesson, nextLesson } = getLessonNavByPathFromRoot(
+        'math',
+        'power-number',
+    );
     return (
         <ContentWrapper
             title="เลขยกกำลัง"
             imageUrl="/images/power-number.webp"
-            prevLesson={{
-                title: 'เศษส่วนและทศนิยม',
-                slug: 'math/fraction-and-decimal',
-            }}
-            nextLesson={{
-                title: 'อัตราส่วน สัดส่วน และร้อยละ',
-                slug: 'math/ratio-proportion-percent',
-            }}
+            prevLesson={prevLesson}
+            nextLesson={nextLesson}
         >
             <Content />
         </ContentWrapper>

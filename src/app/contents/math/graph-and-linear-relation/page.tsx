@@ -1,19 +1,18 @@
 import ContentWrapper from '@/components/ContentWrapper';
 import Content from './graph-and-linear-relation.mdx';
+import { getLessonNavByPathFromRoot } from '@/core/utils/anchor-utils';
 
 export default async function Page() {
+    const { prevLesson, nextLesson } = getLessonNavByPathFromRoot(
+        'math',
+        'graph-and-linear-relation',
+    );
     return (
         <ContentWrapper
             title="กราฟและความสัมพันธ์เชิงเส้น"
             imageUrl="/images/graph-and-linear-relation.webp"
-            prevLesson={{
-                title: 'สมการเชิงเส้นตัวแปรเดียว',
-                slug: 'math/linear-equation-in-one-variable',
-            }}
-            nextLesson={{
-                title: 'จำนวนจริง',
-                slug: 'math/real-number',
-            }}
+            prevLesson={prevLesson}
+            nextLesson={nextLesson}
         >
             <Content />
         </ContentWrapper>

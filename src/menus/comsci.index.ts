@@ -1,19 +1,21 @@
-import type { Category } from '@/core/interfaces/category';
+import type { Anchor } from '@/core/interfaces/anchor';
 
-export const comsciCategory: Category = {
+export const comsciAnchor: Anchor = {
     title: 'วิทยาการคอมพิวเตอร์',
     slug: 'comsci',
-    subcategories: [
+    children: [
         {
             title: 'ภาษาซี',
             slug: 'c-language',
-            lessons: [
+            type: 'group',
+            children: [
                 {
                     title: 'พื้นฐานการเขียนโปรแกรมด้วยภาษาซี',
                     slug: 'basic-c-programming',
+                    type: 'item',
                 },
             ],
         },
     ],
-    lessons: [],
+    type: 'group',
 };

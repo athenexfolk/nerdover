@@ -1,7 +1,9 @@
 'use client';
 
+import type { Anchor } from '@/core/interfaces/anchor';
 import { contentMenu } from '@/menus/menu';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 export default function ContentLayout({
@@ -48,58 +50,19 @@ export default function ContentLayout({
                     </svg>
                     <p className="text-2xl font-bold">เนิร์ดโอเวอร์</p>
                 </div>
-                <nav className="text-sm">
-                    {contentMenu.map((category) => (
-                        <div key={category.slug} className="mb-8">
-                            <p className="mb-2 font-medium">{category.title}</p>
-                            <ul className="flex flex-col">
-                                {category.subcategories?.map((subcategory) => (
-                                    <li
-                                        key={subcategory.slug}
-                                        className="flex flex-col"
-                                    >
-                                        <p className="mb-2 font-medium">
-                                            {subcategory.title}
-                                        </p>
-                                        <ul className="flex flex-col">
-                                            {subcategory.lessons?.map(
-                                                (item) => (
-                                                    <li
-                                                        key={item.slug}
-                                                        className="flex flex-col"
-                                                    >
-                                                        <Link
-                                                            href={`/contents/${category.slug}/${subcategory.slug}/${item.slug}`}
-                                                            onClick={
-                                                                closeMenuOnSmallDevice
-                                                            }
-                                                            className="border-l border-stone-300 px-4 py-2 font-medium text-stone-500 hover:border-stone-500 hover:text-stone-700"
-                                                        >
-                                                            {item.title}
-                                                        </Link>
-                                                    </li>
-                                                ),
-                                            )}
-                                        </ul>
-                                    </li>
-                                ))}
-                                {category.lessons?.map((item) => (
-                                    <li
-                                        key={item.slug}
-                                        className="flex flex-col"
-                                    >
-                                        <Link
-                                            href={`/contents/${category.slug}/${item.slug}`}
-                                            onClick={closeMenuOnSmallDevice}
-                                            className="border-l border-stone-300 px-4 py-2 font-medium text-stone-500 hover:border-stone-500 hover:text-stone-700"
-                                        >
-                                            {item.title}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                <nav className="-mx-2 text-sm">
+                    <MenuWrapper
+                        closeMenuOnSmallDevice={closeMenuOnSmallDevice}
+                    >
+                        {contentMenu.map((anchor) => (
+                            <MenuItem
+                                key={anchor.slug}
+                                anchor={anchor}
+                                prefix=""
+                                closeMenuOnSmallDevice={closeMenuOnSmallDevice}
+                            />
+                        ))}
+                    </MenuWrapper>
                 </nav>
             </aside>
             <button
@@ -123,6 +86,80 @@ export default function ContentLayout({
     );
 }
 
+type MenuItemElement = React.ReactElement<typeof MenuItem>;
+
+type MenuWrapperProps = {
+    children?: MenuItemElement | MenuItemElement[];
+    closeMenuOnSmallDevice: () => void;
+};
+
+const MenuWrapper = ({ children }: MenuWrapperProps) => (
+    <ul className="flex flex-col">{children}</ul>
+);
+
+const MenuItem = ({
+    anchor,
+    prefix,
+    closeMenuOnSmallDevice,
+}: {
+    anchor: Anchor;
+    prefix?: string;
+    closeMenuOnSmallDevice: () => void;
+}) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const pathname = usePathname();
+    const currentPrefix = prefix ? `${prefix}/${anchor.slug}` : anchor.slug;
+    const isActive = () => pathname === `/contents/${currentPrefix}`;
+
+    return (
+        <li key={anchor.slug} className="flex flex-col px-1">
+            {anchor.type === 'group' ? (
+                <>
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="group flex items-center justify-between gap-4 rounded px-2 py-1 hover:bg-stone-100"
+                    >
+                        <span className="flex items-center gap-2">
+                            <div className="size-2 rounded-xs bg-stone-300 group-hover:bg-green-400"></div>
+                            {anchor.title}
+                        </span>
+                        <DownChevronIcon />
+                    </button>
+                    {isOpen &&
+                        anchor.children &&
+                        anchor.children.length > 0 && (
+                            <MenuWrapper
+                                closeMenuOnSmallDevice={closeMenuOnSmallDevice}
+                            >
+                                {anchor.children.map((child) => (
+                                    <MenuItem
+                                        key={child.slug}
+                                        anchor={child}
+                                        prefix={currentPrefix}
+                                        closeMenuOnSmallDevice={
+                                            closeMenuOnSmallDevice
+                                        }
+                                    />
+                                ))}
+                            </MenuWrapper>
+                        )}
+                </>
+            ) : (
+                <Link
+                    href={`/contents/${currentPrefix}`}
+                    onClick={closeMenuOnSmallDevice}
+                    className={`${isActive() ? 'font-semibold text-purple-700' : ''} group flex items-center gap-2 rounded px-2 py-1 hover:bg-stone-100`}
+                >
+                    <div
+                        className={`size-2 rounded-full ${isActive() ? 'bg-purple-700' : 'bg-stone-300 group-hover:bg-purple-400'}`}
+                    ></div>
+                    {anchor.title}
+                </Link>
+            )}
+        </li>
+    );
+};
+
 const LeftChevronIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +173,23 @@ const LeftChevronIcon = () => (
             strokeLinecap="round"
             strokeLinejoin="round"
             d="M15.75 19.5 8.25 12l7.5-7.5"
+        />
+    </svg>
+);
+
+const DownChevronIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="size-4"
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m19.5 8.25-7.5 7.5-7.5-7.5"
         />
     </svg>
 );

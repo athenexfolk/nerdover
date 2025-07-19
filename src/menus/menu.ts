@@ -1,5 +1,5 @@
-import type { Category } from '../core/interfaces/category';
-import { comsciCategory } from './comsci.index';
-import { mathCategory } from './math.index';
+import type { Anchor } from '@/core/interfaces/anchor';
+import { mathAnchor } from './math.index';
+import { comsciAnchor } from './comsci.index';
 
-export const contentMenu: Category[] = [mathCategory, comsciCategory];
+export const contentMenu: Anchor[] = [mathAnchor, comsciAnchor];

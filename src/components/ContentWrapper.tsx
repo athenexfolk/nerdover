@@ -3,8 +3,8 @@ import RelatedLesson from './RelatedLesson';
 
 type ContentWrapperProps = React.PropsWithChildren & {
     title: string;
-    prevLesson?: Anchor;
-    nextLesson?: Anchor;
+    prevLesson?: Partial<Anchor>;
+    nextLesson?: Partial<Anchor>;
     imageUrl?: string;
 };
 

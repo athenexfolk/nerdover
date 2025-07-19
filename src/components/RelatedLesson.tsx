@@ -2,8 +2,8 @@ import type { Anchor } from '@/core/interfaces/anchor';
 import Link from 'next/link';
 
 type RelatedLessonProps = {
-    prev?: Anchor;
-    next?: Anchor;
+    prev?: Partial<Anchor>;
+    next?: Partial<Anchor>;
 };
 
 export default function RelatedLesson({ prev, next }: RelatedLessonProps) {

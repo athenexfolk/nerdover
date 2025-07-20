@@ -1,9 +1,9 @@
-import type { Anchor } from '@/core/interfaces/anchor';
+import type { ContentNav } from '@/core/interfaces/content-nav';
 import Link from 'next/link';
 
 type RelatedLessonProps = {
-    prev?: Partial<Anchor>;
-    next?: Partial<Anchor>;
+    prev?: ContentNav;
+    next?: ContentNav;
 };
 
 export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
@@ -13,7 +13,7 @@ export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
                 {prev && (
                     <Link
                         href={`/contents/${prev.slug}`}
-                        className="flex justify-center items-center gap-2 rounded border border-stone-200 bg-stone-50 px-4 py-2 font-medium hover:bg-stone-100"
+                        className="flex items-center justify-center gap-2 rounded border border-stone-200 bg-stone-50 px-4 py-2 font-medium hover:bg-stone-100"
                     >
                         <LeftArrowIcon />
                         {prev.title}
@@ -25,7 +25,7 @@ export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
                 {next && (
                     <Link
                         href={`/contents/${next.slug}`}
-                        className="flex justify-center items-center gap-2 rounded border border-stone-200 bg-stone-50 px-4 py-2 font-medium hover:bg-stone-100"
+                        className="flex items-center justify-center gap-2 rounded border border-stone-200 bg-stone-50 px-4 py-2 font-medium hover:bg-stone-100"
                     >
                         {next.title}
                         <RightArrowIcon />

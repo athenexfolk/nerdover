@@ -1,11 +1,11 @@
-import type { Anchor } from '@/core/interfaces/anchor';
 import RelatedLesson from './RelatedLesson';
 import Image from 'next/image';
+import type { ContentNav } from '@/core/interfaces/content-nav';
 
 type ContentWrapperProps = React.PropsWithChildren & {
     title: string;
-    prevLesson?: Partial<Anchor>;
-    nextLesson?: Partial<Anchor>;
+    prevLesson?: ContentNav;
+    nextLesson?: ContentNav;
     imageUrl?: string;
 };
 

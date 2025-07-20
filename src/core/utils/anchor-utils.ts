@@ -1,5 +1,6 @@
 import type { Anchor } from '@/core/interfaces/anchor';
 import { contentMenu } from '@/menus/menu';
+import type { ContentNav } from '../interfaces/content-nav';
 
 export function findAnchorByPath(
     root: Anchor,
@@ -14,7 +15,10 @@ export function findAnchorByPath(
     return current;
 }
 
-export function getLessonNavByPath(root: Anchor, ...path: string[]) {
+export function getLessonNavByPath(
+    root: Anchor,
+    ...path: string[]
+): { prevLesson?: ContentNav; nextLesson?: ContentNav } {
     const target = findAnchorByPath(root, ...path);
     if (!target) return { prevLesson: undefined, nextLesson: undefined };
     // Find the parent group
@@ -26,10 +30,28 @@ export function getLessonNavByPath(root: Anchor, ...path: string[]) {
     const siblings =
         parent?.children?.filter((child) => child.type === 'item') ?? [];
     const idx = siblings.findIndex((l) => l.slug === path[path.length - 1]);
+
+    const getPrefixedSlug = (lesson: Anchor | undefined) => {
+        if (!lesson) return '';
+        const parentPath = path.slice(0, -1).join('/');
+        return parentPath ? `${parentPath}/${lesson.slug}` : lesson.slug;
+    };
+
     return {
-        prevLesson: idx > 0 ? siblings[idx - 1] : undefined,
-        nextLesson: idx < siblings.length - 1 ? siblings[idx + 1] : undefined,
-        currentLesson: target,
+        prevLesson:
+            idx > 0
+                ? {
+                      slug: getPrefixedSlug(siblings[idx - 1]),
+                      title: siblings[idx - 1].title,
+                  }
+                : undefined,
+        nextLesson:
+            idx < siblings.length - 1
+                ? {
+                      slug: getPrefixedSlug(siblings[idx + 1]),
+                      title: siblings[idx + 1].title,
+                  }
+                : undefined,
     };
 }
 

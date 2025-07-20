@@ -78,7 +78,7 @@ export default function ContentLayout({
             </main>
             <button
                 onClick={openMenu}
-                className="fixed bottom-4 left-4 z-20 flex size-10 items-center justify-center rounded-full bg-stone-50 shadow"
+                className={`fixed left-4 z-20 flex size-10 items-center justify-center rounded-full bg-stone-50 shadow transition-all duration-500 ${isMenuOpen ? 'invisible -bottom-4 opacity-0' : 'visible bottom-4 opacity-100'}`}
             >
                 <MenuIcon />
             </button>

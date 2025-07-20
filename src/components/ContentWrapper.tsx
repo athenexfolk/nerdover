@@ -1,5 +1,6 @@
 import type { Anchor } from '@/core/interfaces/anchor';
 import RelatedLesson from './RelatedLesson';
+import Image from 'next/image';
 
 type ContentWrapperProps = React.PropsWithChildren & {
     title: string;
@@ -16,14 +17,30 @@ export default function ContentWrapper({
     imageUrl,
 }: ContentWrapperProps) {
     return (
-        <div className="mx-auto flex flex-col gap-4">
-            <div
-                className="relative flex aspect-video items-center justify-center bg-cover saturate-5"
-                style={{ backgroundImage: `url('${imageUrl}')` }}
-            >
-                <h1 className="relative z-10 w-full p-4 text-center text-3xl font-black text-white drop-shadow lg:p-8 lg:text-5xl">
-                    {title}
-                </h1>
+        <div className="mx-auto flex flex-col gap-2">
+            <div className="p-4 md:p-6 lg:p-8">
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                    {imageUrl && (
+                        <Image
+                            src={imageUrl}
+                            alt={title}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    )}
+                    <div
+                        className="pointer-events-none absolute inset-0 z-10"
+                        aria-hidden="true"
+                    >
+                        <div className="absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-black/70 to-transparent" />
+                    </div>
+                    <div className="absolute bottom-0 left-0 z-20 w-full p-4 md:p-6 lg:p-8">
+                        <h1 className="text-left text-2xl font-black text-white drop-shadow sm:text-3xl lg:text-5xl">
+                            {title}
+                        </h1>
+                    </div>
+                </div>
             </div>
             {(prevLesson || nextLesson) && (
                 <RelatedLesson prev={prevLesson} next={nextLesson} />

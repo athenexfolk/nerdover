@@ -32,7 +32,7 @@ export default function ContentLayout({
                 ></div>
             )}
             <aside
-                className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto border-stone-300 bg-stone-50 p-4 transition-all duration-500 lg:border-e ${isMenuOpen ? 'left-0 max-lg:shadow-2xl' : '-left-72'}`}
+                className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto border-stone-300 bg-stone-50 p-4 transition-all duration-500 lg:border-r ${isMenuOpen ? 'left-0 max-lg:shadow-2xl' : '-left-72'}`}
             >
                 <div className="flex items-center gap-4">
                     <svg

@@ -18,10 +18,18 @@ export function findAnchorByPath(
 export function getLessonNavByPath(
     root: Anchor,
     ...path: string[]
-): { prevLesson?: ContentNav; nextLesson?: ContentNav } {
+): {
+    prevLesson?: ContentNav;
+    nextLesson?: ContentNav;
+    currentLesson?: ContentNav;
+} {
     const target = findAnchorByPath(root, ...path);
-    if (!target) return { prevLesson: undefined, nextLesson: undefined };
-    // Find the parent group
+    if (!target)
+        return {
+            prevLesson: undefined,
+            nextLesson: undefined,
+            currentLesson: undefined,
+        };
     let parent: Anchor | undefined = root;
     for (let i = 0; i < path.length - 1; i++) {
         parent = parent.children?.find((child) => child.slug === path[i]);
@@ -52,6 +60,9 @@ export function getLessonNavByPath(
                       title: siblings[idx + 1].title,
                   }
                 : undefined,
+        currentLesson: target
+            ? { slug: path.join('/'), title: target.title }
+            : undefined,
     };
 }
 

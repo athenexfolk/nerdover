@@ -1,5 +1,6 @@
 'use client';
 
+import StaticLogo from '@/components/StaticLogo';
 import type { Anchor } from '@/core/interfaces/anchor';
 import { contentMenu } from '@/menus/menu';
 import Link from 'next/link';
@@ -35,19 +36,7 @@ export default function ContentLayout({
                 className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto border-stone-300 bg-stone-50 p-4 transition-all duration-500 lg:border-r ${isMenuOpen ? 'left-0 max-lg:shadow-2xl' : '-left-72'}`}
             >
                 <div className="flex items-center gap-4">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeWidth="24"
-                        viewBox="0 0 240 240"
-                        className="size-8"
-                    >
-                        <path d="M87.78 88.28q63.42.52 63.44 63.44M19.5 220V59 M219.5 20v161" />
-                        <circle cx="59.5" cy="60" r="40" />
-                        <circle cx="179.5" cy="180" r="40" />
-                    </svg>
+                    <StaticLogo />
                     <p className="text-2xl font-bold">เนิร์ดโอเวอร์</p>
                 </div>
                 <nav className="-mx-2 text-sm">

@@ -50,5 +50,10 @@ export const mathAnchor: Anchor = {
             title: 'เซตเบื้องต้น',
             slug: 'set',
         },
+        {
+            type: 'item',
+            title: 'ตรรกศาสตร์เบื้องต้น',
+            slug: 'logic',
+        },
     ],
 };

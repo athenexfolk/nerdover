@@ -19,7 +19,7 @@ export default function ContentWrapper({
     return (
         <div className="mx-auto flex flex-col gap-2">
             <div className="p-4 md:p-6 lg:p-8">
-                <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl border-[1.5px]">
                     {imageUrl && (
                         <Image
                             src={imageUrl}
@@ -45,7 +45,7 @@ export default function ContentWrapper({
             {(prevLesson || nextLesson) && (
                 <RelatedLesson prev={prevLesson} next={nextLesson} />
             )}
-            <article className="prose prose-sm prose-stone sm:prose-base md:prose-lg prose-blockquote:not-italic prose-blockquote:py-2 prose-blockquote:bg-stone-100 prose-blockquote:px-4 prose-img:w-full prose-figure:max-w-2xl prose-figure:w-full prose-figure:mx-auto prose-img:mx-auto prose-pre:border prose-pre:border-stone-300 mx-auto w-full max-w-4xl p-4 pb-20 md:px-8">
+            <article className="prose prose-lesson prose-sm prose-stone sm:prose-base mx-auto w-full max-w-4xl overflow-auto p-4 pb-20 md:px-8">
                 {children}
             </article>
         </div>

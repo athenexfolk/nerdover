@@ -3,6 +3,7 @@ import type { Anchor } from '@/core/interfaces/anchor';
 export const comsciAnchor: Anchor = {
     title: 'วิทยาการคอมพิวเตอร์',
     slug: 'comsci',
+    type: 'group',
     children: [
         {
             title: 'ภาษาซี',
@@ -17,5 +18,4 @@ export const comsciAnchor: Anchor = {
             ],
         },
     ],
-    type: 'group',
 };

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import { readFileSync, existsSync, readdirSync, writeFileSync } from 'fs';
+import { join, basename } from 'path';
 
 const subject = process.argv[2];
 
@@ -8,14 +8,16 @@ if (!subject) {
     process.exit(1);
 }
 
-const CONTENT_ROOT = path.join(__dirname, `../contents/${subject}`);
-const OUTPUT_PATH = path.join(__dirname, `../menus/${subject}.index.ts`);
-
+const CONTENT_ROOT = join(__dirname, `../contents/${subject}`);
+const OUTPUT_PATH = join(__dirname, `../menus/${subject}.index.ts`);
 
 function readMeta(filePath) {
     try {
-        const data = fs.readFileSync(filePath, 'utf8');
-        const lines = data.split('\n').map(l => l.trim()).filter(Boolean);
+        const data = readFileSync(filePath, 'utf8');
+        const lines = data
+            .split('\n')
+            .map((l) => l.trim())
+            .filter(Boolean);
         const title = lines[0] || '';
         const order = lines.slice(1);
         return { title, order };
@@ -26,43 +28,43 @@ function readMeta(filePath) {
 
 function readFirstLine(filePath) {
     try {
-        const data = fs.readFileSync(filePath, 'utf8');
+        const data = readFileSync(filePath, 'utf8');
         return data.split('\n')[0].replace(/^#\s*/, '').trim();
     } catch {
         return '';
     }
 }
 
-
 function buildAnchor(dir, slug) {
-    const metaPath = path.join(dir, '_meta_');
+    const metaPath = join(dir, '_meta_');
     let title = slug;
     let order = [];
-    if (fs.existsSync(metaPath)) {
+    if (existsSync(metaPath)) {
         const meta = readMeta(metaPath);
         title = meta.title || slug;
         order = meta.order;
     }
 
     // Gather all children (folders and .mdx files)
-    const entries = fs.readdirSync(dir, { withFileTypes: true })
-        .filter(entry => entry.name !== '_meta_');
+    const entries = readdirSync(dir, { withFileTypes: true }).filter(
+        (entry) => entry.name !== '_meta_',
+    );
     const children = [];
     for (const entry of entries) {
-        const entryPath = path.join(dir, entry.name);
+        const entryPath = join(dir, entry.name);
         if (entry.isDirectory()) {
             children.push({
                 ...buildAnchor(entryPath, entry.name),
-                __slug: entry.name
+                __slug: entry.name,
             });
         } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
             const fileTitle = readFirstLine(entryPath);
-            const fileSlug = path.basename(entry.name, '.mdx');
+            const fileSlug = basename(entry.name, '.mdx');
             children.push({
                 title: fileTitle,
                 slug: fileSlug,
                 type: 'item',
-                __slug: fileSlug
+                __slug: fileSlug,
             });
         }
     }
@@ -72,7 +74,7 @@ function buildAnchor(dir, slug) {
     if (order.length > 0) {
         // Add those in order
         for (const o of order) {
-            const idx = children.findIndex(c => c.__slug === o);
+            const idx = children.findIndex((c) => c.__slug === o);
             if (idx !== -1) {
                 orderedChildren.push(children[idx]);
                 children.splice(idx, 1);
@@ -103,10 +105,10 @@ function toTs(anchor) {
 const anchor = buildAnchor(CONTENT_ROOT, subject);
 const tsCode = toTs(anchor);
 
-fs.writeFileSync(OUTPUT_PATH, tsCode, 'utf8');
+writeFileSync(OUTPUT_PATH, tsCode, 'utf8');
 console.log(`${subject}.index.ts generated.`);
 
-const { execSync } = require('child_process');
+import { execSync } from 'child_process';
 try {
     execSync(`pnpm prettier --write "${OUTPUT_PATH}"`, { stdio: 'inherit' });
     console.log('Formatted with Prettier.');

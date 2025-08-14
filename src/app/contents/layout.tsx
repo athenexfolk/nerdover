@@ -33,7 +33,7 @@ export default function ContentLayout({
                 ></div>
             )}
             <aside
-                className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto bg-white p-4 transition-all duration-500 lg:border-r-[1.5px] ${isMenuOpen ? 'visible left-0 opacity-100 max-lg:shadow-2xl' : 'invisible -left-72 opacity-0'}`}
+                className={`fixed top-0 z-30 flex h-dvh w-72 flex-col gap-8 overflow-auto border-stone-300 bg-white p-4 transition-all duration-500 max-lg:shadow-2xl lg:border-r ${isMenuOpen ? 'visible left-0 opacity-100 max-lg:shadow-2xl' : 'invisible -left-72 opacity-0'}`}
             >
                 <div className="flex items-center gap-4">
                     <StaticLogo />
@@ -56,7 +56,7 @@ export default function ContentLayout({
             </aside>
             <button
                 onClick={closeMenu}
-                className={`fixed top-1/2 z-30 flex h-12 w-8 -translate-y-1/2 items-center justify-center rounded border-[1.5px] bg-white transition-all duration-500 max-lg:hidden ${isMenuOpen ? 'visible left-68 opacity-100' : 'invisible -left-4 opacity-0'}`}
+                className={`fixed top-1/2 z-30 flex h-12 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-stone-300 bg-white transition-all duration-500 max-lg:hidden ${isMenuOpen ? 'visible left-68 opacity-100' : 'invisible -left-4 opacity-0'}`}
             >
                 <LeftChevronIcon />
             </button>
@@ -67,7 +67,7 @@ export default function ContentLayout({
             </main>
             <button
                 onClick={openMenu}
-                className={`fixed left-4 z-20 flex size-10 items-center justify-center rounded border-[1.5px] bg-white transition-all duration-500 ${isMenuOpen ? 'invisible -bottom-4 opacity-0' : 'visible bottom-4 opacity-100'}`}
+                className={`fixed left-4 z-20 flex size-10 items-center justify-center rounded border border-stone-300 bg-white transition-all duration-500 ${isMenuOpen ? 'invisible -bottom-4 opacity-0' : 'visible bottom-4 opacity-100'}`}
             >
                 <MenuIcon />
             </button>
@@ -106,10 +106,10 @@ const MenuItem = ({
                 <>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="group flex items-center justify-between gap-4 rounded px-2 py-1"
+                        className="group flex items-center justify-between gap-4 rounded px-2 py-1 hover:bg-yellow-50"
                     >
                         <span className="flex items-center gap-2">
-                            <div className="size-2 rounded border-[1.5px] bg-white group-hover:bg-black"></div>
+                            <div className="size-2 rounded-xs bg-stone-300 group-hover:bg-yellow-500"></div>
                             {anchor.title}
                         </span>
                         <DownChevronIcon />
@@ -137,10 +137,10 @@ const MenuItem = ({
                 <Link
                     href={`/contents/${currentPrefix}`}
                     onClick={closeMenuOnSmallDevice}
-                    className={`${isActive() ? '' : 'border-transparent'} group flex items-center gap-2 rounded border-[1.5px] px-2 py-1`}
+                    className={`${isActive() ? 'bg-purple-50 text-purple-700' : 'hover:bg-yellow-50'} group flex items-center gap-2 rounded px-2 py-1`}
                 >
                     <div
-                        className={`size-2 rounded-full border-[1.5px] ${isActive() ? 'bg-black' : 'bg-white group-hover:bg-black'}`}
+                        className={`size-2 rounded-full ${isActive() ? 'bg-current' : 'bg-stone-300 group-hover:bg-yellow-500'}`}
                     ></div>
                     {anchor.title}
                 </Link>

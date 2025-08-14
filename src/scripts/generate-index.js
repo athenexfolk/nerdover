@@ -35,7 +35,7 @@ function readFirstLine(filePath) {
     }
 }
 
-function buildAnchor(dir, slug) {
+function buildAnchor(dir, slug, parentFullSlug = '') {
     const metaPath = join(dir, '_meta_');
     let title = slug;
     let order = [];
@@ -54,15 +54,17 @@ function buildAnchor(dir, slug) {
         const entryPath = join(dir, entry.name);
         if (entry.isDirectory()) {
             children.push({
-                ...buildAnchor(entryPath, entry.name),
+                ...buildAnchor(entryPath, entry.name, parentFullSlug ? `${parentFullSlug}/${entry.name}` : entry.name),
                 __slug: entry.name,
             });
         } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
             const fileTitle = readFirstLine(entryPath);
             const fileSlug = basename(entry.name, '.mdx');
+            const fullSlug = parentFullSlug ? `${parentFullSlug}/${fileSlug}` : fileSlug;
             children.push({
                 title: fileTitle,
                 slug: fileSlug,
+                fullSlug,
                 type: 'item',
                 __slug: fileSlug,
             });
@@ -89,9 +91,11 @@ function buildAnchor(dir, slug) {
     // Remove __slug helper property
     orderedChildren = orderedChildren.map(({ __slug, ...rest }) => rest);
 
+    const fullSlug = parentFullSlug || slug;
     return {
         title,
         slug,
+        fullSlug,
         type: 'group',
         ...(orderedChildren.length ? { children: orderedChildren } : {}),
     };
@@ -102,7 +106,7 @@ function toTs(anchor) {
     return `import type { Anchor } from '@/core/interfaces/anchor';\n\nexport const ${varName}: Anchor = ${JSON.stringify(anchor, null, 4)};\n`;
 }
 
-const anchor = buildAnchor(CONTENT_ROOT, subject);
+const anchor = buildAnchor(CONTENT_ROOT, subject, subject);
 const tsCode = toTs(anchor);
 
 writeFileSync(OUTPUT_PATH, tsCode, 'utf8');

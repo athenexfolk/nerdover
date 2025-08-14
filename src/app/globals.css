@@ -14,3 +14,26 @@ body {
     font-family: var(--font-noto-sans-thai), sans-serif;
     scroll-behavior: smooth;
 }
+
+.gutter-stable {
+    scrollbar-gutter: stable;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-v {
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+}

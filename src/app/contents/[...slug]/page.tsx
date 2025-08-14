@@ -1,7 +1,7 @@
 import AnimatedWrapper from '@/components/AnimatedWrapper';
 import ContentWrapper from '@/components/ContentWrapper';
 import { Anchor } from '@/core/interfaces/anchor';
-import { getLessonNavByPathFromRoot } from '@/core/utils/anchor-utils';
+import { getLessonNavByFullSlugFromRoot } from '@/core/utils/anchor-utils';
 import { contentMenu } from '@/menus/menu';
 import { notFound } from 'next/navigation';
 
@@ -12,7 +12,7 @@ export default async function ContentPage({
 }) {
     const { slug } = await params;
     const { prevLesson, nextLesson, currentLesson } =
-        getLessonNavByPathFromRoot(...slug);
+        getLessonNavByFullSlugFromRoot(slug.join('/'));
 
     try {
         const { default: Content } = await import(

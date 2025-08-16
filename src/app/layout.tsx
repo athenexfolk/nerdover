@@ -20,9 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" data-scroll-behavior="smooth">
-            <body
-                className={`${notoSansThai.variable} bg-stone-50 text-stone-700`}
-            >
+            <body className={`${notoSansThai.variable} bg-white`}>
                 {children}
             </body>
         </html>

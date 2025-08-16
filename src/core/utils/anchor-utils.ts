@@ -2,73 +2,73 @@ import type { Anchor } from '@/core/interfaces/anchor';
 import { contentMenu } from '@/menus/menu';
 import type { ContentNav } from '../interfaces/content-nav';
 
-export function findAnchorByPath(
+export function findAnchorByFullSlug(
     root: Anchor,
-    ...path: string[]
+    fullSlug: string,
 ): Anchor | undefined {
-    let current: Anchor | undefined = root;
-    for (const segment of path) {
-        if (!current?.children) return undefined;
-        current = current.children.find((child) => child.slug === segment);
-        if (!current) return undefined;
+    if (root.fullSlug === fullSlug) return root;
+    if (!root.children) return undefined;
+    for (const child of root.children) {
+        const found = findAnchorByFullSlug(child, fullSlug);
+        if (found) return found;
     }
-    return current;
+    return undefined;
 }
 
-export function getLessonNavByPath(
+export function getLessonNavByFullSlug(
     root: Anchor,
-    ...path: string[]
+    fullSlug: string,
 ): {
     prevLesson?: ContentNav;
     nextLesson?: ContentNav;
     currentLesson?: ContentNav;
 } {
-    const target = findAnchorByPath(root, ...path);
+    const target = findAnchorByFullSlug(root, fullSlug);
     if (!target)
         return {
             prevLesson: undefined,
             nextLesson: undefined,
             currentLesson: undefined,
         };
-    let parent: Anchor | undefined = root;
-    for (let i = 0; i < path.length - 1; i++) {
-        parent = parent.children?.find((child) => child.slug === path[i]);
-        if (!parent) break;
-    }
+    // Find parent by removing last segment from fullSlug
+    const parentFullSlug = fullSlug.split('/').slice(0, -1).join('/');
+    const parent = parentFullSlug
+        ? findAnchorByFullSlug(root, parentFullSlug)
+        : root;
     const siblings =
         parent?.children?.filter((child) => child.type === 'item') ?? [];
-    const idx = siblings.findIndex((l) => l.slug === path[path.length - 1]);
-
-    const getPrefixedSlug = (lesson: Anchor | undefined) => {
-        if (!lesson) return '';
-        const parentPath = path.slice(0, -1).join('/');
-        return parentPath ? `${parentPath}/${lesson.slug}` : lesson.slug;
-    };
+    const idx = siblings.findIndex((l) => l.fullSlug === fullSlug);
 
     return {
         prevLesson:
             idx > 0
                 ? {
-                      slug: getPrefixedSlug(siblings[idx - 1]),
+                      slug: siblings[idx - 1].fullSlug,
                       title: siblings[idx - 1].title,
                   }
                 : undefined,
         nextLesson:
             idx < siblings.length - 1
                 ? {
-                      slug: getPrefixedSlug(siblings[idx + 1]),
+                      slug: siblings[idx + 1].fullSlug,
                       title: siblings[idx + 1].title,
                   }
                 : undefined,
         currentLesson: target
-            ? { slug: path.join('/'), title: target.title }
+            ? { slug: target.fullSlug, title: target.title }
             : undefined,
     };
 }
 
-export function getLessonNavByPathFromRoot(...path: string[]) {
-    return getLessonNavByPath(
-        { slug: '', title: '', type: 'group', children: contentMenu },
-        ...path,
+export function getLessonNavByFullSlugFromRoot(fullSlug: string) {
+    return getLessonNavByFullSlug(
+        {
+            slug: '',
+            title: '',
+            type: 'group',
+            fullSlug: '',
+            children: contentMenu,
+        },
+        fullSlug,
     );
 }

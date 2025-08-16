@@ -14,7 +14,7 @@ export default function NotFound() {
             <p className="text-lg">โอ๊ะ! ดูเหมือนว่าคุณจะหลงทาง</p>
             <Link
                 href="/"
-                className="block rounded-full border px-4 py-2 hover:bg-stone-100"
+                className="block rounded border-[1.5px] px-4 py-2"
             >
                 กลับหน้าหลัก
             </Link>

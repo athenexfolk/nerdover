@@ -5,5 +5,5 @@ export interface Anchor {
     slug: string;
     type: AnchorType;
     children?: Anchor[];
-    coverUrl?: string;
+    fullSlug: string;
 }

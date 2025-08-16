@@ -8,8 +8,10 @@
         "build": "next build",
         "build:turbo": "next build --turbopack",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "collect": "node src/scripts/generate-index"
     },
+    "type": "module",
     "dependencies": {
         "@mdx-js/loader": "^3.1.0",
         "@mdx-js/react": "^3.1.0",

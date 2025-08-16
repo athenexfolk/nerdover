@@ -25,21 +25,15 @@ export const mathAnchor: Anchor = {
             type: 'item',
         },
         {
-            type: 'item',
-            title: 'การสร้างทางเรขาคณิต',
-            fullSlug: 'math/geometric-construction',
-            slug: 'geometric-construction',
-        },
-        {
-            type: 'item',
-            title: 'การสร้างทางเรขาคณิต',
-            fullSlug: 'math/geometric-construction',
-            slug: 'geometric-construction',
-        },
-        {
             title: 'อัตราส่วน สัดส่วน และร้อยละ',
             slug: 'ratio-proportion-percent',
             fullSlug: 'math/ratio-proportion-percent',
+            type: 'item',
+        },
+        {
+            title: 'การสร้างทางเรขาคณิต',
+            slug: 'geometric-construction',
+            fullSlug: 'math/geometric-construction',
             type: 'item',
         },
         {

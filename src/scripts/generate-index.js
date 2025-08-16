@@ -1,5 +1,6 @@
 import { readFileSync, existsSync, readdirSync, writeFileSync } from 'fs';
-import { join, basename } from 'path';
+import { join, basename, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const subject = process.argv[2];
 
@@ -7,6 +8,9 @@ if (!subject) {
     console.error('No subject specified.');
     process.exit(1);
 }
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const CONTENT_ROOT = join(__dirname, `../contents/${subject}`);
 const OUTPUT_PATH = join(__dirname, `../menus/${subject}.index.ts`);
@@ -29,7 +33,13 @@ function readMeta(filePath) {
 function readFirstLine(filePath) {
     try {
         const data = readFileSync(filePath, 'utf8');
-        return data.split('\n')[0].replace(/^#\s*/, '').trim();
+        const lines = data.split('\n');
+        for (const line of lines) {
+            if (/^\s*#+\s+/.test(line)) {
+                return line.replace(/^\s*#+\s+/, '').trim();
+            }
+        }
+        return '';
     } catch {
         return '';
     }
@@ -54,13 +64,21 @@ function buildAnchor(dir, slug, parentFullSlug = '') {
         const entryPath = join(dir, entry.name);
         if (entry.isDirectory()) {
             children.push({
-                ...buildAnchor(entryPath, entry.name, parentFullSlug ? `${parentFullSlug}/${entry.name}` : entry.name),
+                ...buildAnchor(
+                    entryPath,
+                    entry.name,
+                    parentFullSlug
+                        ? `${parentFullSlug}/${entry.name}`
+                        : entry.name,
+                ),
                 __slug: entry.name,
             });
         } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
             const fileTitle = readFirstLine(entryPath);
             const fileSlug = basename(entry.name, '.mdx');
-            const fullSlug = parentFullSlug ? `${parentFullSlug}/${fileSlug}` : fileSlug;
+            const fullSlug = parentFullSlug
+                ? `${parentFullSlug}/${fileSlug}`
+                : fileSlug;
             children.push({
                 title: fileTitle,
                 slug: fileSlug,

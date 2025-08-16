@@ -22,6 +22,11 @@ export const mathAnchor: Anchor = {
         },
         {
             type: 'item',
+            title: 'การสร้างทางเรขาคณิต',
+            slug: 'geometric-construction',
+        },
+        {
+            type: 'item',
             title: 'อัตราส่วน สัดส่วน และร้อยละ',
             slug: 'ratio-proportion-percent',
         },

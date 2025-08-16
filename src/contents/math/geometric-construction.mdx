@@ -1,0 +1,64 @@
+import GridGallery from '@/components/GridGallery';
+
+## สารบัญ
+
+## องค์ประกอบทางเรขาคณิตเบื้องต้น
+
+### จุด
+
+**จุด (Point)** ใช้อธิบายตำแหน่งเฉพาะบนระนาบหรือในปริภูมิ (Space) ไม่มีขนาด ไม่มีความกว้างหรือความยาว เป็นเพียงตำแหน่งที่ใช้กำหนดสถานที่ของวัตถุเรขาคณิตต่าง ๆ และใช้เป็นจุดอ้างอิงในการสร้างเส้นหรือรูปอื่น ๆ มักแทนจุดด้วยตัวอักษร เช่น จุด $A$ ดังรูป
+
+![Point](/images/contents/math/geometric-construction/point.webp)
+
+### เส้นตรง
+
+**เส้นตรง (Line)** คือเส้นที่ประกอบด้วยจุดจำนวนอนันต์เรียงต่อกันอย่างไม่มีที่สิ้นสุดทั้งสองทิศทาง เส้นตรงไม่มีจุดเริ่มต้นและจุดสิ้นสุด ไม่มีความหนา และมีเพียงมิติเดียวคือความยาว ซึ่งเป็นอนันต์ หากให้ $A,B$ เป็นจุดที่ต่างกันบนเส้นตรง สามารถแทนด้วยสัญลักษณ์ $\overleftrightarrow{AB}$
+
+![Line](/images/contents/math/geometric-construction/line.webp)
+
+> มีเส้นตรงเพียงเส้นเดียวที่สามารถลากผ่านจุดสองจุดที่กำหนดให้
+
+> เส้นตรงสองเส้นที่ต่างกันและไม่ขนานกันตัดกันที่จุดเพียงจุดเดียว
+
+### ส่วนของเส้นตรง
+
+**ส่วนของเส้นตรง (Segment)** คือส่วนหนึ่งของเส้นตรงที่มีจุดปลายสองจุด มีความยาวจำกัด หากให้ $A,B$ เป็นจุดที่ต่างกันบนเส้นตรง สามารถแทนด้วยสัญลักษณ์ $\overline{AB}$
+
+![Segment](/images/contents/math/geometric-construction/segment.webp)
+
+### รังสี
+
+**รังสี (Ray)** คือส่วนหนึ่งของเส้นตรงที่มีจุดปลายหนึ่งจุด มีความยาวเป็นอนันต์ หากให้ $A$ เป็นจุดปลายนั้น และ $B$ เป็นจุดหนึ่งบนเส้นตรง สามารถแทนด้วยสัญลักษณ์ $\overrightarrow{AB}$
+
+![Ray](/images/contents/math/geometric-construction/ray.webp)
+
+> $\overrightarrow{AB}$ ต่างกันกับ $\overrightarrow{BA}$ แต่ $\overrightarrow{AB}$ เหมือนกันกับ $\overleftarrow{BA}$
+
+### มุม
+
+**มุม (Angle)** เกิดจากรังสีสองเส้นที่มีจุดปลายเดียวกัน จุดปลายนั้นเรียกว่า จุดยอดมุม (Vertex) และรังสีทั้งสองเส้นเรียกว่า แขนหรือด้านของมุม (Side) ขนาดมุมวัดจากการหมุนจากด้านหนึ่งไปอีกด้านหนึ่ง มีหน่วยสองประเภท ได้แก่ แบบองศา (Degree) และแบบเรเดียน (Radian) หากให้ $A$ เป็นจุดยอดมุม และ $\overrightarrow{AB}, \overrightarrow{AC}$ เป็นแขนของมุม สามารถแทนด้วยสัญลักษณ์ $\angle BAC$ หรือ $B\hat AC$
+
+![Angle](/images/contents/math/geometric-construction/angle.webp)
+
+<GridGallery>
+  <div align="center">
+    <span>มุมแหลม (Acute) <br /> $0^\circ < \hat A < 90^\circ$</span>
+    <img src="/images/contents/math/geometric-construction/acute.webp" alt="Acute Angle" />
+  </div>
+  <div align="center">
+    <span>มุมฉาก (Right) <br /> $90^\circ$</span>
+    <img src="/images/contents/math/geometric-construction/right.webp" alt="Right Angle" />
+  </div>
+  <div align="center">
+    <span>มุมป้าน (Obtuse) <br /> $90^\circ < \hat A < 180^\circ$</span>
+    <img src="/images/contents/math/geometric-construction/obtuse.webp" alt="Obtuse Angle" />
+  </div>
+  <div align="center">
+    <span>มุมตรง (Straight) <br /> $180^\circ$</span>
+    <img src="/images/contents/math/geometric-construction/straight.webp" alt="Straight Angle" />
+  </div>
+  <div align="center">
+    <span>มุมกลับ (Reflex) <br /> $180^\circ < \hat A < 360^\circ$</span>
+    <img src="/images/contents/math/geometric-construction/reflex.webp" alt="Reflex Angle" />
+  </div>
+</GridGallery>

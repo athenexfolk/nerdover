@@ -16,7 +16,7 @@ import GridGallery from '@/components/GridGallery';
 
 **เส้นตรง (Line)** คือเส้นที่ประกอบด้วยจุดจำนวนอนันต์เรียงต่อกันอย่างไม่มีที่สิ้นสุดทั้งสองทิศทาง เส้นตรงไม่มีจุดเริ่มต้นและจุดสิ้นสุด ไม่มีความหนา และมีเพียงมิติเดียวคือความยาว ซึ่งเป็นอนันต์ หากให้ $A,B$ เป็นจุดที่ต่างกันบนเส้นตรง สามารถแทนด้วยสัญลักษณ์ $\overleftrightarrow{AB}$
 
-![Line](/images/contents/math/geometric-construction/line.webp)
+![Line](/images/contents/math/geometric-construction/straight-line.webp)
 
 > มีเส้นตรงเพียงเส้นเดียวที่สามารถลากผ่านจุดสองจุดที่กำหนดให้
 
@@ -26,7 +26,7 @@ import GridGallery from '@/components/GridGallery';
 
 **ส่วนของเส้นตรง (Segment)** คือส่วนหนึ่งของเส้นตรงที่มีจุดปลายสองจุด มีความยาวจำกัด หากให้ $A,B$ เป็นจุดที่ต่างกันบนเส้นตรง สามารถแทนด้วยสัญลักษณ์ $\overline{AB}$
 
-![Segment](/images/contents/math/geometric-construction/segment.webp)
+![Segment](/images/contents/math/geometric-construction/line-segment.webp)
 
 ### รังสี
 
@@ -71,43 +71,39 @@ import GridGallery from '@/components/GridGallery';
 
 ### การสร้างส่วนของเส้นตรงที่เท่ากัน
 
-1. กำหนดส่วนของเส้นตรง ดังรูป
+1. กำหนดส่วนของเส้นตรง $\overline{AB}$ ดังรูป
 
-![Equally Line Step 1](/images/contents/math/geometric-construction/equally-line-1.webp)
+![Equalize Line Step 1](/images/contents/math/geometric-construction/equalize-s1.webp)
 
-2. ปักหมุดวงเวียนไว้ที่ปลายด้านหนึ่งของส่วนของเส้นตรง กางวงเวียนให้รัศมียาวเท่ากับส่วนของเส้นตรงนั้น
+2. สร้างส่วนของเส้นตรง $\overline{CD}$ ให้ยาวกว่า $\overline{AB}$
 
-![Equally Line Step 2](/images/contents/math/geometric-construction/equally-line-2.webp)
+![Equalize Line Step 2](/images/contents/math/geometric-construction/equalize-s2.webp)
 
-3. ร่างจุดปลายทั้งสองด้าน อาจใช้จุดด้านหนึ่งเป็นรอยหมุด และอีกด้านหนึ่งเป็นรอยดินสอ
+3. กางวงเวียนให้รัศมีวงเวียนยาวเท่ากับ $\overline{AB}$
 
-![Equally Line Step 3](/images/contents/math/geometric-construction/equally-line-3.webp)
+![Equalize Line Step 3](/images/contents/math/geometric-construction/equalize-s3.webp)
 
-4. ใช้สันตรงลากจากจุดหนึ่งไปอีกจุดหนึ่ง เพื่อสร้างส่วนของเส้นตรง
+4. สร้างเส้นโค้งตัด $\overline{CD}$ ที่จุดตัด $E$ จะได้ส่วนของเส้นตรง $\overline{AE}$ ที่ยาวเท่ากันกับ $\overline{AB}$
 
-![Equally Line Step 4](/images/contents/math/geometric-construction/equally-line-4.webp)
+![Equalize Line Step 4](/images/contents/math/geometric-construction/equalize-s4.webp)
 
 ### การแบ่งครึ่งส่วนของเส้นตรง
 
-1. กำหนดส่วนของเส้นตรง ดังรูป
+1. กำหนดส่วนของเส้นตรง $\overline{AB}$ ดังรูป
 
-![Half Line Step 1](/images/contents/math/geometric-construction/half-line-1.webp)
+![Half Line Step 1](/images/contents/math/geometric-construction/half-s1.webp)
 
-2. ปักหมุดวงเวียนที่ปลายด้านหนึ่งของส่วนของเส้นตรง กางวงเวียนกะให้รัศมียาวกว่าครึ่งของส่วนของเส้นตรงนั้น
+2. ปักหมุดวงเวียนที่จุด $A$ กางวงเวียนให้รัศมีวงเวียนยาวกว่าครึ่งหนึ่งของ $\overline{AB}$ แล้วสร้างเส้นโค้งพอประมาณ ดังรูป
 
-![Half Line Step 2](/images/contents/math/geometric-construction/half-line-2.webp)
+![Half Line Step 2](/images/contents/math/geometric-construction/half-s2.webp)
 
-3. วาดเส้นโค้งให้ยาวพอเหมาะสม ดังรูป
+3. ใช้รัศมีวงเวียนเดียวกันกับข้อ 2. ปักหมุดวงเวียนที่จุด $B$ แล้วสร้างเส้นโค้งพอประมาณ ดังรูป
 
-![Half Line Step 3](/images/contents/math/geometric-construction/half-line-3.webp)
+![Half Line Step 3](/images/contents/math/geometric-construction/half-s3.webp)
 
-4. ทำอย่างเดียวกันกับข้อ 2. และ 3. กับปลายอีกด้านหนึ่ง ด้วยรัศมีวงเวียนเท่าเดิม
+4. จากข้อ 3. จะได้จุดตัดเส้นโค้ง $C$ และ $D$ สร้างส่วนของเส้นตรงผ่านจุด $C$ และ $D$ จะได้จุดตัด $E$ บน $\overline{AB}$ <br /> จุด $E$ นี้คือจุดกึ่งกลางของส่วนของเส้นตรง $\overline{AB}$
 
-![Half Line Step 4](/images/contents/math/geometric-construction/half-line-4.webp)
-
-5. ลากส่วนของเส้นตรงผ่านจุดตัดส่วนโค้งทั้งสองจุด เส้นที่ตัดผ่านส่วนของเส้นตรงต้นแบบจะแบ่งครึ่งส่วนของเส้นตรงนั้น
-
-![Half Line Step 5](/images/contents/math/geometric-construction/half-line-5.webp)
+![Half Line Step 4](/images/contents/math/geometric-construction/half-s4.webp)
 
 ### การสร้างมุมที่เท่ากัน
 

@@ -61,6 +61,12 @@ export const mathAnchor: Anchor = {
             type: 'item',
         },
         {
+            title: 'พหุนาม',
+            slug: 'polynomial',
+            fullSlug: 'math/polynomial',
+            type: 'item',
+        },
+        {
             title: 'เซตเบื้องต้น',
             slug: 'set',
             fullSlug: 'math/set',

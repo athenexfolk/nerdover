@@ -9,6 +9,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 width={1200}
                 height={600}
                 alt={props.alt}
+                priority
             />
         ),
         ...components,

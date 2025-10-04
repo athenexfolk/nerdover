@@ -7,7 +7,7 @@ export default function StaticLogo() {
             strokeLinecap="round"
             strokeWidth="20"
             viewBox="0 0 240 240"
-            className="size-8"
+            className="size-7"
         >
             <path id="n-start" d="M20 220V60" />
             <circle id="n-circle-top" cx="60" cy="60" r="40" />

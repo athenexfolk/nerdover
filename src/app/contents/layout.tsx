@@ -1,32 +1,28 @@
 'use client';
 
+import ContentPageWrapper from '@/components/ContentPageWrapper';
+import Header from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
 import StaticLogo from '@/components/StaticLogo';
+import { SidebarProvider } from '@/context/SidebarContext';
 import type { Anchor } from '@/core/interfaces/anchor';
 import { contentMenu } from '@/menus/menu';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
-
+import { useState } from 'react';
 export default function ContentLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-    const openMenu = () => setIsMenuOpen(true);
-    const closeMenu = () => setIsMenuOpen(false);
-
-    // Helper to close menu only on small devices
-    const closeMenuOnSmallDevice = () => {
-        if (window.innerWidth < 1024) {
-            closeMenu();
-        }
-    };
-
     return (
         <>
-            {isMenuOpen && (
+            <SidebarProvider>
+                <Header />
+                <Sidebar />
+                <ContentPageWrapper>{children}</ContentPageWrapper>
+            </SidebarProvider>
+            {/* {isMenuOpen && (
                 <div
                     onClick={closeMenu}
                     className={`fixed top-0 left-0 z-29 h-dvh w-full lg:hidden`}
@@ -70,7 +66,7 @@ export default function ContentLayout({
                 className={`fixed left-4 z-20 flex size-10 items-center justify-center rounded border border-stone-300 bg-white transition-all duration-500 ${isMenuOpen ? 'invisible -bottom-4 opacity-0' : 'visible bottom-4 opacity-100'}`}
             >
                 <MenuIcon />
-            </button>
+            </button> */}
         </>
     );
 }
@@ -95,7 +91,7 @@ const MenuItem = ({
     prefix?: string;
     closeMenuOnSmallDevice: () => void;
 }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
     const currentPrefix = prefix ? `${prefix}/${anchor.slug}` : anchor.slug;
     const isActive = () => pathname === `/contents/${currentPrefix}`;

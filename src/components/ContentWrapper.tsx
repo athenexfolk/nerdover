@@ -35,7 +35,7 @@ export default function ContentWrapper({
                     >
                         <div className="absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-black/70 to-transparent" />
                     </div>
-                    <div className="absolute bottom-0 left-0 z-20 w-full p-4 md:p-6 lg:p-8">
+                    <div className="absolute bottom-0 left-0 z-11 w-full p-4 md:p-6 lg:p-8">
                         <h1 className="text-left text-2xl font-black text-white drop-shadow sm:text-3xl lg:text-5xl">
                             {title}
                         </h1>

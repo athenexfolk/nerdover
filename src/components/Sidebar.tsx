@@ -55,6 +55,9 @@ function AnchorNode({
     depth: number;
     isFirst?: boolean;
 }) {
+    const [isOpen, setIsOpen] = useState(() =>
+        depth === 0 && isFirst ? true : false,
+    );
     if (node.type === 'item') {
         return (
             <li>
@@ -67,10 +70,6 @@ function AnchorNode({
             </li>
         );
     }
-
-    const [isOpen, setIsOpen] = useState(() =>
-        depth === 0 && isFirst ? true : false,
-    );
 
     // group
     return (

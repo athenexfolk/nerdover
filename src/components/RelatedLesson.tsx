@@ -8,7 +8,7 @@ type RelatedLessonProps = {
 
 export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
     return (
-        <div className="flex flex-wrap justify-between gap-4 px-8 py-4 max-sm:flex-col">
+        <div className="flex flex-wrap justify-between gap-4 px-8 py-4 max-sm:flex-col max-sm:px-4">
             <div>
                 {prev && (
                     <Link

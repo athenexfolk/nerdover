@@ -1,6 +1,10 @@
+'use client';
+
 import { useSidebar } from '@/context/SidebarContext';
-import StaticLogo from './StaticLogo';
 import { useEffect, useRef, useState } from 'react';
+import SearchBox from './SearchBox';
+import { contentMenu } from '@/menus/menu';
+import Brand from './Brand';
 
 export default function Header() {
     const { toggleMenu } = useSidebar();
@@ -9,7 +13,12 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.innerWidth >= 768) return;
+            if (window.innerWidth >= 768) {
+                if (hidden) {
+                    setHidden(false);
+                }
+                return;
+            }
             const currentScrollY = window.scrollY;
             if (currentScrollY > lastScrollY.current && currentScrollY > 40) {
                 setHidden(true);
@@ -20,24 +29,26 @@ export default function Header() {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [hidden]);
 
     return (
         <header
             className={`fixed top-0 left-0 z-18 flex h-16 w-full items-center justify-between gap-6 border-b border-stone-200 bg-white px-4 py-1 transition-transform duration-300 md:z-20 ${hidden ? '-translate-y-16' : 'translate-y-0'}`}
         >
-            <button
-                onClick={toggleMenu}
-                className="flex size-10 items-center rounded border border-stone-200 p-2"
-            >
-                <MenuIcon />
-            </button>
-            <div className="flex items-center gap-2">
-                <StaticLogo />
-                <p className="text-xl font-bold">เนิร์ดโอเวอร์</p>
+            <div className="flex items-center gap-4">
+                <button
+                    onClick={toggleMenu}
+                    className="flex size-10 items-center rounded p-2"
+                >
+                    <MenuIcon />
+                </button>
+                <Brand />
             </div>
-            <div className="size-10"></div>
-            {/* <SearchBar /> */}
+            <SearchBox
+                anchors={contentMenu}
+                mini
+                className="max-md:hidden md:max-w-md lg:max-w-lg"
+            />
         </header>
     );
 }
@@ -60,9 +71,3 @@ const MenuIcon = () => (
         />
     </svg>
 );
-
-const SearchBar = () => {
-    return (
-        <div className="flex h-10 w-72 items-center rounded-full bg-stone-100 p-2"></div>
-    );
-};

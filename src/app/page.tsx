@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 import RecommendedLessonList from '@/components/RecommendedLessonList';
 import SearchBox from '@/components/SearchBox';
-import StaticLogo from '@/components/StaticLogo';
 import { contentMenu } from '@/menus/menu';
+import Brand from '@/components/Brand';
 
 export default function Home() {
     return (
@@ -18,10 +18,7 @@ export default function Home() {
 
 const HeaderSection = () => (
     <header className="flex items-center justify-between gap-4 p-4">
-        <div className="flex items-center gap-4">
-            <StaticLogo />
-            <p className="text-2xl font-bold">เนิร์ดโอเวอร์</p>
-        </div>
+        <Brand />
         <nav>
             <ul className="flex items-center gap-2">
                 <li>

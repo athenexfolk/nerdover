@@ -1,4 +1,3 @@
-import AnimatedWrapper from '@/components/AnimatedWrapper';
 import ContentWrapper from '@/components/ContentWrapper';
 import { Anchor } from '@/core/interfaces/anchor';
 import { getLessonNavByFullSlugFromRoot } from '@/core/utils/anchor-utils';
@@ -18,17 +17,16 @@ export default async function ContentPage({
         const { default: Content } = await import(
             `@/contents/${slug.join('/')}.mdx`
         );
+
         return (
-            <AnimatedWrapper animationKey={slug.join('/')}>
-                <ContentWrapper
-                    title={currentLesson?.title || 'Untitled Lesson'}
-                    imageUrl={`/images/contents/${currentLesson?.slug}/_cover_.webp`}
-                    prevLesson={prevLesson}
-                    nextLesson={nextLesson}
-                >
-                    <Content />
-                </ContentWrapper>
-            </AnimatedWrapper>
+            <ContentWrapper
+                title={currentLesson?.title || 'Untitled Lesson'}
+                imageUrl={`/images/contents/${currentLesson?.slug}/_cover_.webp`}
+                prevLesson={prevLesson}
+                nextLesson={nextLesson}
+            >
+                <Content />
+            </ContentWrapper>
         );
     } catch (error) {
         console.log(error);

@@ -18,8 +18,8 @@ export default function ContentWrapper({
 }: ContentWrapperProps) {
     return (
         <div className="mx-auto flex flex-col gap-2">
-            <div className="p-4 md:p-6 lg:p-8">
-                <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+            <div className="p-4">
+                <div className="relative aspect-[4/1] w-full overflow-hidden rounded-xl">
                     {imageUrl && (
                         <Image
                             src={imageUrl}

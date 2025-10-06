@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import SearchBox from './SearchBox';
 import { contentMenu } from '@/menus/menu';
 import Brand from './Brand';
+import FontSelector from './FontSelector';
 
 export default function Header() {
     const { toggleMenu } = useSidebar();
@@ -44,11 +45,14 @@ export default function Header() {
                 </button>
                 <Brand />
             </div>
-            <SearchBox
-                anchors={contentMenu}
-                mini
-                className="max-md:hidden md:max-w-md lg:max-w-lg"
-            />
+            <div className="flex items-center gap-4">
+                <FontSelector />
+                <SearchBox
+                    anchors={contentMenu}
+                    mini
+                    className="max-md:hidden md:max-w-md lg:max-w-lg"
+                />
+            </div>
         </header>
     );
 }

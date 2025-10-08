@@ -1,28 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { fonts } from '@/core/constants/fonts';
+import { useFont } from '@/context/FontContext';
 
 export default function FontSelector({ className }: { className?: string }) {
     const [isPanelOpen, setIsPanelOpen] = useState(false);
-    const [font, setFont] = useState<string>(() => {
-        const savedFont =
-            typeof window !== 'undefined'
-                ? localStorage.getItem('selectedFont')
-                : null;
-        if (savedFont && fonts[savedFont]) {
-            return savedFont;
-        }
-        return 'notoSansThai';
-    });
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('selectedFont', font);
-        }
-        document.body.className =
-            fonts[font]?.className || fonts.notoSansThai.className;
-    }, [font]);
+    const { font, setFont } = useFont();
 
     return (
         <div className={`group relative ${className ?? ''}`}>
@@ -46,7 +30,9 @@ export default function FontSelector({ className }: { className?: string }) {
                                         name="font"
                                         value={key}
                                         checked={font === key}
-                                        onChange={() => setFont(key)}
+                                        onChange={() =>
+                                            setFont(key as keyof typeof fonts)
+                                        }
                                         className="accent-purple-600"
                                     />
                                     <span>{fontObj.name}</span>

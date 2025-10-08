@@ -39,7 +39,7 @@ export default function Sidebar() {
             <aside
                 className={`fixed top-0 z-21 flex h-dvh w-72 shrink-0 grow-0 flex-col gap-4 overflow-y-auto border-stone-200 bg-white max-md:shadow-lg md:top-16 md:z-19 md:h-[calc(100dvh-64px)] md:border-e ${isMenuOpen ? 'visible left-0' : 'invisible -left-72'} p-4 transition-all duration-500`}
             >
-                <SearchBox anchors={contentMenu} mini className='md:hidden' />
+                <SearchBox anchors={contentMenu} mini className='md:hidden' onLinkClick={handleCloseMenuOnSmallDevice} />
                 <nav className="flex flex-col gap-4">
                     <ul>
                         {MAIN_MENU.map((item) => (

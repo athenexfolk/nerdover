@@ -11,12 +11,14 @@ interface SearchBoxProps {
     anchors: Anchor[];
     mini?: boolean;
     className?: string;
+    onLinkClick?: () => void;
 }
 
 export default function SearchBox({
     anchors,
     mini,
     className,
+    onLinkClick,
 }: SearchBoxProps) {
     const [query, setQuery] = useState('');
     const results = query.trim() ? searchAnchors(anchors, query) : [];
@@ -50,7 +52,10 @@ export default function SearchBox({
                                     key={i}
                                     className="border-b border-stone-300 py-1 last:border-b-0"
                                 >
-                                    <Link href={`/contents/${anchor.fullSlug}`}>
+                                    <Link
+                                        href={`/contents/${anchor.fullSlug}`}
+                                        onClick={onLinkClick}
+                                    >
                                         <span className="text-xs text-stone-500">
                                             {path
                                                 .map((p) => p.title)

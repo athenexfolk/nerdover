@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import 'katex/dist/katex.min.css';
+import { FontProvider } from '@/context/FontContext';
 
 export const metadata: Metadata = {
     title: 'เนิร์ดโอเวอร์',
@@ -12,7 +13,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en" data-scroll-behavior="smooth">
-            <body>{children}</body>
+            <body>
+                <FontProvider>{children}</FontProvider>
+            </body>
         </html>
     );
 }

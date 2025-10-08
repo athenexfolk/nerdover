@@ -4,6 +4,20 @@ import { getLessonNavByFullSlugFromRoot } from '@/core/utils/anchor-utils';
 import { contentMenu } from '@/menus/menu';
 import { notFound } from 'next/navigation';
 
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string[] }>;
+}) {
+    const { slug } = await params;
+    const { currentLesson } = getLessonNavByFullSlugFromRoot(slug.join('/'));
+    return {
+        title: `${currentLesson?.title || 'บทเรียนไม่มีชื่อ'} - เนิร์ดโอเวอร์`,
+        // description: currentLesson?.description || '',
+        // Add more metadata fields as needed
+    };
+}
+
 export default async function ContentPage({
     params,
 }: {

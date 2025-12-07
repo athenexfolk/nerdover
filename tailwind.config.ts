@@ -1,8 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+export default {
+    content: [],
     theme: {
         extend: {
-            typography: (theme) => ({
+            typography: ({ theme }) => ({
                 DEFAULT: {
                     css: {
                         blockquote: {
@@ -13,7 +15,7 @@ module.exports = {
                             paddingLeft: theme('spacing.4'),
                             paddingRight: theme('spacing.4'),
                             borderWidth: '1.5px',
-                            borderColor: theme('colors.black'),
+                            borderColor: theme('colors.stone.200'),
                             borderRadius: theme('borderRadius.md'),
                         },
                         'blockquote p:first-of-type::before': {
@@ -35,7 +37,7 @@ module.exports = {
 
                         pre: {
                             borderWidth: '1.5px',
-                            borderColor: theme('colors.black'),
+                            borderColor: theme('colors.stone.200'),
                         },
                     },
                 },
@@ -50,7 +52,7 @@ module.exports = {
                             paddingLeft: theme('spacing.4'),
                             paddingRight: theme('spacing.4'),
                             borderWidth: '1.5px',
-                            borderColor: theme('colors.black'),
+                            borderColor: theme('colors.stone.200'),
                             borderRadius: theme('borderRadius.md'),
                         },
                         'blockquote p:first-of-type::before': {
@@ -71,11 +73,12 @@ module.exports = {
                         },
                         pre: {
                             borderWidth: '1.5px',
-                            borderColor: theme('colors.black'),
+                            borderColor: theme('colors.stone.200'),
                         },
                     },
                 },
             }),
         },
     },
-};
+    plugins: [],
+} satisfies Config;

@@ -50,7 +50,7 @@ export default function SearchBox({
                             {results.map(({ anchor, path }, i) => (
                                 <li
                                     key={i}
-                                    className="border-b border-stone-300 py-1 last:border-b-0"
+                                    className="border-b border-stone-200 py-1 last:border-b-0"
                                 >
                                     <Link
                                         href={`/contents/${anchor.fullSlug}`}

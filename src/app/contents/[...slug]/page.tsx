@@ -2,19 +2,21 @@ import ContentWrapper from '@/components/ContentWrapper';
 import { Anchor } from '@/core/interfaces/anchor';
 import { getLessonNavByFullSlugFromRoot } from '@/core/utils/anchor-utils';
 import { contentMenu } from '@/menus/menu';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export async function generateMetadata({
     params,
 }: {
     params: Promise<{ slug: string[] }>;
-}) {
+}): Promise<Metadata> {
     const { slug } = await params;
     const { currentLesson } = getLessonNavByFullSlugFromRoot(slug.join('/'));
     return {
         title: `${currentLesson?.title || 'บทเรียนไม่มีชื่อ'} - เนิร์ดโอเวอร์`,
-        // description: currentLesson?.description || '',
-        // Add more metadata fields as needed
+        openGraph: {
+            images: `/images/contents/${currentLesson?.slug}/_og_.jpg`,
+        }
     };
 }
 
@@ -35,7 +37,7 @@ export default async function ContentPage({
         return (
             <ContentWrapper
                 title={currentLesson?.title || 'Untitled Lesson'}
-                imageUrl={`/images/contents/${currentLesson?.slug}/_cover_.webp`}
+                imageUrl={`/images/contents/${currentLesson?.slug}/_og_.jpg`}
                 prevLesson={prevLesson}
                 nextLesson={nextLesson}
             >

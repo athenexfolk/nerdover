@@ -30,23 +30,22 @@ const HeaderSection = () => (
 );
 
 const LandingSection = () => (
-    <div className="flex min-h-[calc(100dvh-64px)] flex-col items-center justify-center gap-4 p-4">
-        <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
-            <h1 className="text-center text-4xl leading-tight font-black md:text-right">
-                อยากจะเรียน
-                <br />
-                เรียนให้เนิร์ด
-                <br />
-                เนิร์ดให้โอเวอร์
-            </h1>
+    <div className="flex flex-col items-center justify-center gap-4 p-4">
+        <div className="flex flex-col items-center gap-4">
             <Image
-                src="/images/boy-reading-book.png"
-                alt="boy-reading-book"
+                src="/images/graduated-boy-under-the-tree.webp"
+                alt="A graduated boy under the tree"
                 className="object-contain"
-                width="192"
-                height="192"
+                width="288"
+                height="288"
                 priority
             />
+            <h1 className="text-center text-6xl font-bold">
+                เนิร์ดโอเวอร์
+            </h1>
+            <h2 className="flex items-center gap-2 text-center text-2xl font-semibold">
+                อยากจะเรียน เรียนให้เนิร์ด เนิร์ดให้โอเวอร์
+            </h2>
         </div>
         <SearchBox anchors={contentMenu} />
     </div>

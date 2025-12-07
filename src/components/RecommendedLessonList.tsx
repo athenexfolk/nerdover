@@ -23,21 +23,22 @@ export default function RecommendedLessonList() {
                             href={`/contents/${lesson.slug}`}
                             className="relative shrink-0 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md"
                         >
-                            <div className="relative aspect-video w-64 overflow-hidden rounded-xl">
+                            <div className="relative aspect-40/21 w-64 overflow-hidden rounded-xl border border-stone-200">
                                 <Image
-                                    src={`/images/contents/${lesson.slug}/_cover_.webp`}
+                                    src={`/images/contents/${lesson.slug}/_og_.jpg`}
                                     alt={lesson.title}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    fill
+                                    width={1200}
+                                    height={630}
                                     className="object-cover object-center"
                                     priority
                                 />
                             </div>
-                            <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-xl bg-black/30">
+                            {/* <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-xl bg-black/30">
                                 <p className="font-semibold text-white drop-shadow">
                                     {lesson.title}
                                 </p>
-                            </div>
+                            </div> */}
                         </Link>
                     ))}
                 </div>

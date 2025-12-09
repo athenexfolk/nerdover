@@ -21,11 +21,11 @@ export default function RecommendedLessonList() {
                         <Link
                             key={lesson.slug}
                             href={`/contents/${lesson.slug}`}
-                            className="relative shrink-0 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md"
+                            className="relative shrink-0 rounded-xl"
                         >
-                            <div className="relative aspect-40/21 w-64 overflow-hidden rounded-xl border border-stone-200">
+                            <div className="relative aspect-40/21 w-64 overflow-hidden rounded-xl border border-stone-200 transition-all duration-300 hover:scale-105 hover:shadow-md">
                                 <Image
-                                    src={`/images/contents/${lesson.slug}/_og_.jpg`}
+                                    src={`/images/contents/${lesson.slug}/_og_.png`}
                                     alt={lesson.title}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     width={1200}
@@ -34,11 +34,9 @@ export default function RecommendedLessonList() {
                                     priority
                                 />
                             </div>
-                            {/* <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-xl bg-black/30">
-                                <p className="font-semibold text-white drop-shadow">
-                                    {lesson.title}
-                                </p>
-                            </div> */}
+                            <div className="mt-2 w-64 font-medium">
+                                {lesson.title}
+                            </div>
                         </Link>
                     ))}
                 </div>

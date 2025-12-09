@@ -46,7 +46,7 @@ export default function ContentWrapper({
             {(prevLesson || nextLesson) && (
                 <RelatedLesson prev={prevLesson} next={nextLesson} />
             )}
-            <article className="prose prose-lesson prose-sm prose-stone sm:prose-base mx-auto w-full max-w-4xl overflow-auto p-4 pb-20 md:px-8">
+            <article className="prose prose-lesson prose-sm prose-stone sm:prose-base mx-auto w-full max-w-4xl overflow-auto p-4 pb-20 md:px-8 prose-pre:max-w-4xl prose-figure:max-w-4xl">
                 {children}
             </article>
         </div>

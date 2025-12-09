@@ -15,7 +15,7 @@ export async function generateMetadata({
     return {
         title: `${currentLesson?.title || 'บทเรียนไม่มีชื่อ'} - เนิร์ดโอเวอร์`,
         openGraph: {
-            images: `/images/contents/${currentLesson?.slug}/_og_.jpg`,
+            images: `/images/contents/${currentLesson?.slug}/_og_.png`,
         }
     };
 }
@@ -37,7 +37,7 @@ export default async function ContentPage({
         return (
             <ContentWrapper
                 title={currentLesson?.title || 'Untitled Lesson'}
-                imageUrl={`/images/contents/${currentLesson?.slug}/_og_.jpg`}
+                imageUrl={`/images/contents/${currentLesson?.slug}/_og_.png`}
                 prevLesson={prevLesson}
                 nextLesson={nextLesson}
             >

@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import Brand from '@/components/Brand';
 import RecommendedLessonList from '@/components/RecommendedLessonList';
 import SearchBox from '@/components/SearchBox';
 import { contentMenu } from '@/menus/menu';
-import Brand from '@/components/Brand';
 
 export default function Home() {
     return (
@@ -40,9 +40,7 @@ const LandingSection = () => (
                 height="288"
                 priority
             />
-            <h1 className="text-center text-6xl font-bold">
-                เนิร์ดโอเวอร์
-            </h1>
+            <h1 className="text-center text-6xl font-bold">เนิร์ดโอเวอร์</h1>
             <h2 className="flex items-center gap-2 text-center text-2xl font-semibold">
                 อยากจะเรียน เรียนให้เนิร์ด เนิร์ดให้โอเวอร์
             </h2>

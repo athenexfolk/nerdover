@@ -1,9 +1,10 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import ContentWrapper from '@/components/ContentWrapper';
 import { Anchor } from '@/core/interfaces/anchor';
 import { getLessonNavByFullSlugFromRoot } from '@/core/utils/anchor-utils';
 import { contentMenu } from '@/menus/menu';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 export async function generateMetadata({
     params,
@@ -16,7 +17,7 @@ export async function generateMetadata({
         title: `${currentLesson?.title || 'บทเรียนไม่มีชื่อ'} - เนิร์ดโอเวอร์`,
         openGraph: {
             images: `/images/contents/${currentLesson?.slug}/_og_.png`,
-        }
+        },
     };
 }
 

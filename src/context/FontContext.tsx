@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+
 import { fonts } from '@/core/constants/fonts';
 
 export type FontKey = keyof typeof fonts;

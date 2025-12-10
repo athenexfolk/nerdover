@@ -12,10 +12,7 @@ export default function NotFound() {
                 alt="not found book"
             />
             <p className="text-lg">โอ๊ะ! ดูเหมือนว่าคุณจะหลงทาง</p>
-            <Link
-                href="/"
-                className="block rounded border-[1.5px] px-4 py-2"
-            >
+            <Link href="/" className="block rounded border-[1.5px] px-4 py-2">
                 กลับหน้าหลัก
             </Link>
         </div>

@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { fonts } from '@/core/constants/fonts';
+
 import { useFont } from '@/context/FontContext';
+import { fonts } from '@/core/constants/fonts';
 
 export default function FontSelector({ className }: { className?: string }) {
     const [isPanelOpen, setIsPanelOpen] = useState(false);

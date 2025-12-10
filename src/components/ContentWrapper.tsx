@@ -1,6 +1,8 @@
-import RelatedLesson from './RelatedLesson';
 import Image from 'next/image';
+
 import type { ContentNav } from '@/core/interfaces/content-nav';
+
+import RelatedLesson from './RelatedLesson';
 
 type ContentWrapperProps = React.PropsWithChildren & {
     title: string;

@@ -1,11 +1,13 @@
 'use client';
 
-import { useSidebar } from '@/context/SidebarContext';
 import { useEffect, useRef, useState } from 'react';
-import SearchBox from './SearchBox';
+
+import { useSidebar } from '@/context/SidebarContext';
 import { contentMenu } from '@/menus/menu';
+
 import Brand from './Brand';
 import FontSelector from './FontSelector';
+import SearchBox from './SearchBox';
 
 export default function Header() {
     const { toggleMenu } = useSidebar();

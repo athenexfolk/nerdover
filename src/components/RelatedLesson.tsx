@@ -1,5 +1,6 @@
-import type { ContentNav } from '@/core/interfaces/content-nav';
 import Link from 'next/link';
+
+import type { ContentNav } from '@/core/interfaces/content-nav';
 
 type RelatedLessonProps = {
     prev?: ContentNav;

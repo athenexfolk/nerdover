@@ -1,7 +1,10 @@
-import type { Metadata } from 'next';
-import './globals.css';
 import 'katex/dist/katex.min.css';
+
+import type { Metadata } from 'next';
+
 import { FontProvider } from '@/context/FontContext';
+
+import './globals.css';
 
 export const metadata: Metadata = {
     title: 'เนิร์ดโอเวอร์',

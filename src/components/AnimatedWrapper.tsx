@@ -1,9 +1,8 @@
 'use client';
-import { ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 type AnimatedContentWrapperProps = {
-    children: ReactNode;
+    children: React.ReactNode;
     animationKey: string;
 };
 

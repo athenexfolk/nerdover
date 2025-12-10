@@ -1,5 +1,6 @@
 import type { Anchor } from '@/core/interfaces/anchor';
 import { contentMenu } from '@/menus/menu';
+
 import type { ContentNav } from '../interfaces/content-nav';
 
 export function findAnchorByFullSlug(

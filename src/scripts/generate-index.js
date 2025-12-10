@@ -1,5 +1,6 @@
-import { readFileSync, existsSync, readdirSync, writeFileSync } from 'fs';
-import { join, basename, dirname } from 'path';
+import { execSync } from 'child_process';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'fs';
+import { basename, dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const subject = process.argv[2];
@@ -130,7 +131,6 @@ const tsCode = toTs(anchor);
 writeFileSync(OUTPUT_PATH, tsCode, 'utf8');
 console.log(`${subject}.index.ts generated.`);
 
-import { execSync } from 'child_process';
 try {
     execSync(`pnpm prettier --write "${OUTPUT_PATH}"`, { stdio: 'inherit' });
     console.log('Formatted with Prettier.');

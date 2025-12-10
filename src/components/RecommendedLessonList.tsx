@@ -1,7 +1,8 @@
-import { Anchor } from '@/core/interfaces/anchor';
-import { mathAnchor } from '@/menus/math.index';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { Anchor } from '@/core/interfaces/anchor';
+import { mathAnchor } from '@/menus/math.index';
 
 const RECOMMENDED_LESSONS: Anchor[] =
     mathAnchor.children?.map<Anchor>((item) => {

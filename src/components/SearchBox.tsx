@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { searchAnchors } from '@/core/utils/menu-search';
+import Link from 'next/link';
 
 import type { Anchor } from '@/core/interfaces/anchor';
+import { searchAnchors } from '@/core/utils/menu-search';
 
 interface SearchBoxProps {
     anchors: Anchor[];

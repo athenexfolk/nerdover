@@ -7,20 +7,25 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "collect": "node src/scripts/generate-index"
+        "format": "prettier --write ./src",
+        "collect": "node src/scripts/generate-index",
+        "prepare": "husky"
     },
     "type": "module",
     "dependencies": {
         "@mdx-js/loader": "^3.1.1",
         "@mdx-js/react": "^3.1.1",
-        "@next/mdx": "16.0.7",
+        "@next/mdx": "16.0.8",
         "@tailwindcss/postcss": "^4.1.17",
         "@tailwindcss/typography": "^0.5.19",
         "@types/mdx": "^2.0.13",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
         "framer-motion": "^12.23.25",
         "gray-matter": "^4.0.3",
-        "katex": "^0.16.25",
-        "next": "16.0.7",
+        "katex": "^0.16.27",
+        "lucide-react": "^0.556.0",
+        "next": "16.0.8",
         "next-mdx-remote-client": "^2.1.7",
         "postcss": "^8.5.6",
         "prettier": "^3.7.4",
@@ -33,15 +38,43 @@
         "remark-gfm": "^4.0.1",
         "remark-math": "^6.0.0",
         "remark-toc": "^9.0.0",
+        "shadcn": "^3.5.2",
         "shiki": "^3.19.0",
-        "tailwindcss": "^4.1.17"
+        "tailwind-merge": "^3.4.0",
+        "tailwindcss": "^4.1.17",
+        "tailwindcss-animate": "^1.0.7"
     },
     "devDependencies": {
-        "@types/node": "^24.10.1",
+        "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+        "@types/node": "^24.10.2",
         "@types/react": "19.2.7",
         "@types/react-dom": "19.2.3",
         "eslint": "^9.39.1",
-        "eslint-config-next": "16.0.7",
+        "eslint-config-next": "16.0.8",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.7",
         "typescript": "^5.9.3"
+    },
+    "prettier": {
+        "plugins": [
+            "prettier-plugin-tailwindcss",
+            "@trivago/prettier-plugin-sort-imports"
+        ],
+        "singleQuote": true,
+        "tabWidth": 4,
+        "importOrder": [
+            "^react(.*)$",
+            "^next(.*)$",
+            "^@/.*",
+            "^[./]"
+        ],
+        "importOrderSeparation": true,
+        "importOrderSortSpecifiers": true
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js,jsx,json,css,md}": [
+            "pnpm format",
+            "git add"
+        ]
     }
 }

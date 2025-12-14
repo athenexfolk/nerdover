@@ -1,53 +1,9 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
 @plugin '@tailwindcss/typography';
 
-@plugin 'tailwindcss-animate';
-@config '../../tailwind.config.ts';
-
-@layer base {
-    button:not(:disabled),
-    [role='button']:not(:disabled) {
-        cursor: pointer;
-    }
-}
-
-html,
-body {
-    scroll-behavior: smooth;
-}
-
-.gutter-stable {
-    scrollbar-gutter: stable;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.scrollbar-v {
-    &::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.3);
-        border-radius: 4px;
-
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-    }
-}
-
-.system-font {
-    font-family:
-        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-        Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
@@ -89,6 +45,8 @@ body {
 
 :root {
     --radius: 0.625rem;
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.147 0.004 49.25);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.147 0.004 49.25);
     --popover: oklch(1 0 0);
@@ -118,8 +76,6 @@ body {
     --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
     --sidebar-border: oklch(0.923 0.003 48.717);
     --sidebar-ring: oklch(0.709 0.01 56.259);
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.147 0.004 49.25);
 }
 
 .dark {
@@ -154,6 +110,12 @@ body {
     --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.553 0.013 58.071);
+
+    code[data-theme*=' '],
+    code[data-theme*=' '] span {
+        color: var(--shiki-dark);
+        background-color: var(--shiki-dark-bg);
+    }
 }
 
 @layer base {
@@ -163,4 +125,50 @@ body {
     body {
         @apply bg-background text-foreground;
     }
+}
+
+@utility prose-lesson {
+    blockquote {
+        quotes: none;
+        font-style: normal;
+    }
+
+    --tw-prose-body: var(--color-stone-800);
+    --tw-prose-headings: var(--color-stone-900);
+    --tw-prose-lead: var(--color-stone-700);
+    --tw-prose-links: var(--color-stone-900);
+    --tw-prose-bold: var(--color-stone-900);
+    --tw-prose-counters: var(--color-stone-600);
+    --tw-prose-bullets: var(--color-stone-400);
+    --tw-prose-hr: var(--color-stone-300);
+    --tw-prose-quotes: var(--color-stone-900);
+    --tw-prose-quote-borders: var(--color-stone-300);
+    --tw-prose-captions: var(--color-stone-700);
+    --tw-prose-code: var(--color-stone-900);
+    --tw-prose-pre-code: var(--color-stone-100);
+    --tw-prose-pre-bg: var(--color-stone-900);
+    --tw-prose-th-borders: var(--color-stone-300);
+    --tw-prose-td-borders: var(--color-stone-200);
+    --tw-prose-invert-body: var(--color-stone-200);
+    --tw-prose-invert-headings: var(--color-white);
+    --tw-prose-invert-lead: var(--color-stone-300);
+    --tw-prose-invert-links: var(--color-white);
+    --tw-prose-invert-bold: var(--color-white);
+    --tw-prose-invert-counters: var(--color-stone-400);
+    --tw-prose-invert-bullets: var(--color-stone-400);
+    --tw-prose-invert-hr: var(--color-stone-700);
+    --tw-prose-invert-quotes: var(--color-stone-100);
+    --tw-prose-invert-quote-borders: var(--color-stone-300);
+    --tw-prose-invert-captions: var(--color-stone-400);
+    --tw-prose-invert-code: var(--color-white);
+    --tw-prose-invert-pre-code: var(--color-stone-300);
+    --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+    --tw-prose-invert-th-borders: var(--color-stone-600);
+    --tw-prose-invert-td-borders: var(--color-stone-700);
+}
+
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
 }

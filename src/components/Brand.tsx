@@ -2,11 +2,21 @@ import Link from 'next/link';
 
 import StaticLogo from './StaticLogo';
 
-export default function Brand() {
+type BrandProps = {
+    withText?: boolean;
+    withLogo?: boolean;
+    className?: string;
+};
+
+export default function Brand({
+    withText = true,
+    withLogo = true,
+    className = '',
+}: BrandProps) {
     return (
-        <Link href="/" className="flex items-center gap-4">
-            <StaticLogo />
-            <p className="text-2xl font-bold">เนิร์ดโอเวอร์</p>
+        <Link href="/" className={`flex items-center gap-4 ${className}`}>
+            {withLogo && <StaticLogo />}
+            {withText && <p className="text-2xl font-bold">เนิร์ดโอเวอร์</p>}
         </Link>
     );
 }

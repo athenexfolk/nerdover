@@ -35,7 +35,7 @@ const LandingSection = () => (
             <Image
                 src="/images/graduated-boy-under-the-tree.webp"
                 alt="A graduated boy under the tree"
-                className="object-contain"
+                className="object-contain dark:invert"
                 width="288"
                 height="288"
                 priority

@@ -1,7 +1,7 @@
-import ContentPageWrapper from '@/components/ContentPageWrapper';
-import Header from '@/components/Header';
-import Sidebar from '@/components/Sidebar';
-import { SidebarProvider } from '@/context/SidebarContext';
+import { SidebarProvider } from '@/components/ui/sidebar';
+
+import ContentHeader from './ContentHeader';
+import ContentSidebar from './ContentSidebar';
 
 export default function ContentLayout({
     children,
@@ -9,12 +9,12 @@ export default function ContentLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <>
-            <SidebarProvider>
-                <Header />
-                <Sidebar />
-                <ContentPageWrapper>{children}</ContentPageWrapper>
-            </SidebarProvider>
-        </>
+        <SidebarProvider>
+            <ContentSidebar />
+            <main className="grow">
+                <ContentHeader />
+                {children}
+            </main>
+        </SidebarProvider>
     );
 }

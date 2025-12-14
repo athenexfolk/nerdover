@@ -31,7 +31,7 @@ export default function RecommendedLessonList() {
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     width={1200}
                                     height={630}
-                                    className="object-cover object-center"
+                                    className="object-cover object-center dark:invert"
                                     priority
                                 />
                             </div>

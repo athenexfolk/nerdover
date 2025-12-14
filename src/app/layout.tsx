@@ -2,8 +2,9 @@ import 'katex/dist/katex.min.css';
 
 import type { Metadata } from 'next';
 
-import { FontProvider } from '@/context/FontContext';
+import { ThemeProvider } from '@/components/theme-provider';
 
+import InitializeFont from './InitializeFont';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -15,9 +16,17 @@ export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en" data-scroll-behavior="smooth">
+        <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
             <body>
-                <FontProvider>{children}</FontProvider>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
+                <InitializeFont />
             </body>
         </html>
     );

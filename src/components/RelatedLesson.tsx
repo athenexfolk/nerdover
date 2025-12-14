@@ -14,7 +14,7 @@ export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
                 {prev && (
                     <Link
                         href={`/contents/${prev.slug}`}
-                        className="flex items-center justify-center gap-2 rounded border-[1.5px] border-stone-200 bg-white px-4 py-2"
+                        className="flex items-center justify-center gap-2 rounded border-[1.5px] px-4 py-2"
                     >
                         <LeftArrowIcon />
                         {prev.title}
@@ -26,7 +26,7 @@ export default function RelatedLesson({ prev, next }: RelatedLessonProps) {
                 {next && (
                     <Link
                         href={`/contents/${next.slug}`}
-                        className="flex items-center justify-center gap-2 rounded border-[1.5px] border-stone-200 bg-white px-4 py-2"
+                        className="flex items-center justify-center gap-2 rounded border-[1.5px] px-4 py-2"
                     >
                         {next.title}
                         <RightArrowIcon />

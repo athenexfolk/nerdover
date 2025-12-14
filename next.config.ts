@@ -1,7 +1,9 @@
 import createMDX from '@next/mdx';
+
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+    reactCompiler: true,
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 };
 
@@ -14,7 +16,10 @@ const withMDX = createMDX({
         ],
         rehypePlugins: [
             ['rehype-katex'],
-            ['rehype-pretty-code', { theme: 'github-light' }],
+            [
+                'rehype-pretty-code',
+                { theme: { light: 'vitesse-light', dark: 'github-dark' } },
+            ],
             ['rehype-slug'],
         ],
     },

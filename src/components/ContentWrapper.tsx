@@ -28,27 +28,16 @@ export default function ContentWrapper({
                             alt={title}
                             width={1200}
                             height={630}
-                            className="object-cover"
+                            className="object-cover dark:invert"
                             priority
                         />
                     )}
-                    {/* <div
-                        className="pointer-events-none absolute inset-0 z-10"
-                        aria-hidden="true"
-                    >
-                        <div className="absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t from-black/70 to-transparent" />
-                    </div> */}
-                    {/* <div className="absolute bottom-0 left-0 z-11 w-full p-4 md:p-6 lg:p-8">
-                        <h1 className="text-left text-2xl font-black text-white drop-shadow sm:text-3xl lg:text-5xl">
-                            {title}
-                        </h1>
-                    </div> */}
                 </div>
             </div>
             {(prevLesson || nextLesson) && (
                 <RelatedLesson prev={prevLesson} next={nextLesson} />
             )}
-            <article className="prose prose-lesson prose-sm prose-stone sm:prose-base mx-auto w-full max-w-4xl overflow-auto p-4 pb-20 md:px-8 prose-pre:max-w-4xl prose-figure:max-w-4xl">
+            <article className="prose prose-lesson dark:prose-invert prose-sm sm:prose-base mx-auto w-full max-w-4xl overflow-auto p-4 pb-20 md:px-8 prose-pre:max-w-4xl prose-figure:max-w-4xl dark:prose-img:bg-primary dark:prose-img:rounded-2xl prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg) prose-pre:border">
                 {children}
             </article>
         </div>

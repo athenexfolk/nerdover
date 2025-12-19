@@ -88,8 +88,7 @@
     },
     "lint-staged": {
         "*.{ts,tsx,js,jsx,json,css,md}": [
-            "pnpm format",
-            "git add"
+            "pnpm format"
         ]
     }
 }

@@ -1,8 +1,7 @@
-import { create } from 'zustand';
-
 import { useEffect } from 'react';
 
 import { fonts } from '@/core/constants/fonts';
+import { create } from 'zustand';
 
 export type FontKey = keyof typeof fonts;
 

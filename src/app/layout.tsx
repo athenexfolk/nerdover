@@ -1,11 +1,11 @@
-import 'katex/dist/katex.min.css';
-
 import type { Metadata } from 'next';
 
 import { ThemeProvider } from '@/components/theme-provider';
 
 import InitializeFont from './InitializeFont';
 import './globals.css';
+
+import 'katex/dist/katex.min.css';
 
 export const metadata: Metadata = {
     title: 'เนิร์ดโอเวอร์',

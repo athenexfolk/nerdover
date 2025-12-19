@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { SidebarTrigger } from '@/components/ui/sidebar';
+
 import FontSelector from '@/components/FontSelector';
 import { ThemeSelector } from '@/components/ThemeSelector';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export default function ContentHeader() {
     const [hidden, setHidden] = useState(false);
@@ -32,7 +33,7 @@ export default function ContentHeader() {
 
     return (
         <header
-            className={`sticky top-0 z-10 p-4 transition-all duration-300 bg-background/80 backdrop-blur flex justify-between items-center h-18 ${hidden ? '-translate-y-18' : ''}`}
+            className={`bg-background/80 sticky top-0 z-10 flex h-18 items-center justify-between p-4 backdrop-blur transition-all duration-300 ${hidden ? '-translate-y-18' : ''}`}
         >
             <SidebarTrigger />
             <div className="flex items-center gap-2">

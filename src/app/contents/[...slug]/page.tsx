@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import ContentWrapper from '@/components/ContentWrapper';
 import { Anchor } from '@/core/interfaces/anchor';
 import { getLessonNavByFullSlugFromRoot } from '@/core/utils/anchor-utils';
 import { contentMenu } from '@/menus/menu';
+
+import ContentWrapper from '@/components/ContentWrapper';
 
 export async function generateMetadata({
     params,

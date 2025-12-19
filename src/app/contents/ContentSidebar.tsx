@@ -1,13 +1,14 @@
 'use client';
 
-import { ChevronRight, HomeIcon } from 'lucide-react';
-
 import { useState } from 'react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import Brand from '@/components/Brand';
+import { Anchor } from '@/core/interfaces/anchor';
+import { contentMenu } from '@/menus/menu';
+import { ChevronRight, HomeIcon } from 'lucide-react';
+
 import {
     Collapsible,
     CollapsibleContent,
@@ -25,8 +26,8 @@ import {
     SidebarMenuSub,
     SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
-import { Anchor } from '@/core/interfaces/anchor';
-import { contentMenu } from '@/menus/menu';
+
+import Brand from '@/components/Brand';
 
 const MAIN_MENU = [
     { title: 'หน้าหลัก', href: '/', icon: <HomeIcon /> },

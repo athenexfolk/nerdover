@@ -37,7 +37,7 @@ export default function ContentWrapper({
             {(prevLesson || nextLesson) && (
                 <RelatedLesson prev={prevLesson} next={nextLesson} />
             )}
-            <article className="prose prose-lesson dark:prose-invert prose-sm sm:prose-base mx-auto w-full max-w-4xl overflow-auto p-4 pb-20 md:px-8 prose-pre:max-w-4xl prose-figure:max-w-4xl dark:prose-img:bg-primary dark:prose-img:rounded-2xl prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg) prose-pre:border">
+            <article className="prose prose-lesson dark:prose-invert prose-sm sm:prose-base prose-pre:max-w-4xl prose-figure:max-w-4xl dark:prose-img:bg-primary dark:prose-img:rounded-2xl prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg) prose-pre:border mx-auto w-full max-w-4xl overflow-auto p-4 pb-20 md:px-8">
                 {children}
             </article>
         </div>

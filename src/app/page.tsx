@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { contentMenu } from '@/menus/menu';
+
 import Brand from '@/components/Brand';
 import RecommendedLessonList from '@/components/RecommendedLessonList';
 import SearchBox from '@/components/SearchBox';
-import { contentMenu } from '@/menus/menu';
 
 export default function Home() {
     return (

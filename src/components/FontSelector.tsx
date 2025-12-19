@@ -1,9 +1,8 @@
 'use client';
 
-import { CaseSensitiveIcon } from 'lucide-react';
-
 import { useFont } from '@/contexts/FontContext';
 import { fonts } from '@/core/constants/fonts';
+import { CaseSensitiveIcon } from 'lucide-react';
 
 import { Button } from './ui/button';
 import {
